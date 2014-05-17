@@ -1,0 +1,12 @@
+{# app/Resources/views/Common/messages.html.twig #}
+{% import ':Common:macros.html.twig' as macros %}
+
+{% for type, flashMessages in app.session.flashbag.all() %}
+    {% if flashMessages|length > 0 %}
+        <div class="m-t-md">
+        {% for flashMessage in flashMessages %}
+            {{ macros.message(type, flashMessage) }}
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endfor %}

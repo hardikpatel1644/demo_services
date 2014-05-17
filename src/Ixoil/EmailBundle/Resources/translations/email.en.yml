@@ -1,0 +1,48 @@
+email:
+    send:
+        success: "Email has been send successfully."
+        error: "Oopps..... There is some error during email sending."
+    subject:
+        login: Ixoil login detail
+        changePassword: Password changed
+        forgotPassword: Forgot changed
+        accountAccept: Account accepted
+        accountReject: Account rejected
+        registration: Registration
+        contact_us: A message has been sent from the contact form
+        email_confirmed: Verify Ixoil company account details.
+        confirmation_email: Confirm your email.
+    title:
+        welcome: Welcome to the world of Ixoil
+        login: Ixoil login details
+        changePassword: Password changed
+        forgotPassword: Forgot Password?
+        accountAccept: Account accepted
+        accountReject: Account rejected
+        registration: Registration
+        thanksMsg : And again, welcome among us!
+    link:
+        forgotPassword: Click here to reset your password. 
+        changePassword: Click here to login using changed password.
+    registration : 
+        completed : Registration complete!
+        failed : Registration failed!
+        activationtext : An activation email has been sent.
+    changepassword :
+        successful : Password changed Successfully!
+        error : Password change error!
+    account:
+        accept: Account has been activated successfully!
+        reject: Account activation error!
+    contact_us:
+        paragraph: A message has been sent from the contact form.
+        name: Name
+        email: Email
+        company: Company
+        phone: Phone
+        message: Message
+    email_confirmed:
+        paragraph: A company owner email confirmation done. Please click below link to see company profile.
+    confirmation_email:
+        paragraph: Please confirm your email by clicking on following link. If you are unable to click, copy and paste in browser addrress bar.
+        

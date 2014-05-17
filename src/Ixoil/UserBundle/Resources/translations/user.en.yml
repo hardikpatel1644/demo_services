@@ -1,0 +1,49 @@
+login:
+    form:
+        signin: "Sign In"
+        username: "Username"
+        email: "Email"
+        password: "Password"
+        rememberme: "Remember Me"
+        forgotten:
+            password: "Forgotten Password ?"
+        submit: "Submit"
+        error:
+            invalid: "Invalid username or password"
+            disable: "Disabled your account"
+            
+resetting: 
+    request:
+        heading: Forgot Password
+        username: "Username or email address:"
+        submit: Reset password
+        error:
+            invalid_username: The username or email address "%username%" does not exist.
+    already:
+        reset: |
+            You have already change your password with this link.
+            For security reason, if you want to change it again %reset_link_start% click here %reset_link_end%
+
+            If you don't want to change your password again, and just connect you on ixoil project, please %login_link_start% click here %login_link_end%
+
+            Thanks
+    check_email:
+        message: An email has been sent to %email%. It contains a link you must click to reset your password.
+    password_already_requested:
+        message: The password for this user has already been requested within the last 24 hours.
+
+
+    resetpasswordheading: Reset Password
+    reset:
+        submit: Change password
+    flash:
+        success: The password has been reset successfully
+    email:
+        subject: Reset Password
+        message: |
+            Hello %username%!
+
+            To reset your password - please visit %confirmationUrl%
+
+            Regards,
+            the Team.

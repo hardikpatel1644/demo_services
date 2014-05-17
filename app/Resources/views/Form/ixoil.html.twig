@@ -1,0 +1,85 @@
+{% trans_default_domain 'fileinput' %}
+
+{% block form_label %}
+    {% spaceless %}
+        {% set col_size = col_size|default(bootstrap_get_col_size()) %}
+
+        {% if attr.label_col is defined and attr.label_col is not empty %}
+            {% set label_col = attr.label_col %}
+        {% endif %}
+        {% if attr.widget_col is defined and attr.widget_col is not empty %}
+            {% set widget_col = attr.widget_col %}
+        {% endif %}
+        {% if attr.col_size is defined and attr.col_size is not empty %}
+            {% set col_size = attr.col_size %}
+        {% endif %}
+
+        {% if label is not sameas(false) %}
+            {% set style = style|default(bootstrap_get_style()) %}
+            {% set label_col = label_col|default(bootstrap_get_label_col()) %}
+
+            {% if attr.style is defined and attr.style is not empty %}
+                {% set style = attr.style %}
+            {% endif %}
+
+            {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' control-label')|trim }) %}
+            {% if style == 'horizontal' %}
+                {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' col-' ~ col_size ~ '-' ~ label_col)|trim }) %}
+            {% elseif style == 'inline' %}
+                {% set label_attr = label_attr|merge({ 'class': (label_attr.class|default('') ~ ' sr-only')|trim }) %}
+            {% endif %}
+
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {{ label|trans({}, translation_domain) }}
+                {%- if required  %} *{% endif %}
+            </label>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_label %}
+
+{% block file_widget %}
+{% spaceless %}
+    {% set col_size = col_size|default(bootstrap_get_col_size()) %}
+
+    {% if attr.simple_col is defined and attr.simple_col is not empty %}
+        {% set simple_col = attr.simple_col %}
+    {% endif  %}
+
+    {% if attr.col_size is defined and attr.col_size is not empty %}
+        {% set col_size = attr.col_size %}
+    {% endif %}
+
+    {% if simple_col is defined %}
+        <div class="col-{{ col_size }}-{{ simple_col }}">
+    {% endif %}
+
+    {% set fileInputClass = 'fileinput-' ~ (value is not empty ? 'exists' : 'new') %}
+
+    <div class="fileinput {{ fileInputClass }} {% if attr.class is defined %}{{ attr.class }}{% endif %}" data-provides="fileinput">
+        <div class="input-group">
+            <div class="form-control uneditable-input span3" data-trigger="fileinput">
+                <i class="fa fa-file fileinput-exists"></i> <span class="fileinput-filename">{{ value }}</span>
+            </div>
+            <span class="input-group-addon btn btn-default btn-file">
+                <span class="fileinput-new">{{ 'fileinput.select'|trans }}</span>
+                <span class="fileinput-exists">{{ 'fileinput.change'|trans }}</span>
+                <input type="file" {{ block('widget_attributes') }} />
+            </span>
+            <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">{{ 'fileinput.remove'|trans }}</a>
+        </div>
+    </div>
+
+    {% if simple_col is defined %}
+        </div>
+    {% endif %}
+{% endspaceless %}
+{% endblock file_widget %}

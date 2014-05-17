@@ -1,0 +1,75 @@
+register:
+    heading: Register account for %type%
+    type:
+        purchaser: 'Purchaser'
+        provider: 'Provider'
+        logistician: 'Logistician'
+        purchaser-logistician: 'Purchaser & Logistician'
+    
+step:
+    one:
+        title: 'Company'
+        company_name: 'Company Name'
+        company_number: 'Company Number'
+        address: 'Address'
+        zip_code: 'Zip Code'
+        city: 'City'
+        country: 'Country'
+        country_empty: 'Select a country'
+        vat: 'VAT'
+    two:
+        title: 'Specific'
+        truck: 'Truck'
+        bank_statement: 'Bank Statement'
+        certificate_of_incorporation: 'Certificate Of Incorporation'
+        activity: 'Activities'
+        delivery_areas: 'Delivery Areas'
+        activities:
+            tanker: 'Tanker'
+            dealer: 'Dealer'
+            negociant: 'Negociant'
+            gms: 'GMS'
+    three:
+        title: 'User'
+        first_name: 'First Name'
+        last_name: 'Last Name'
+        email: 'Email'
+        phone_number: 'Phone Number'
+        fax: 'Fax'
+        password: 'Password'
+        confirm_password: 'Confirm Password'
+        terms_of_use: 'I read & accept Terms of Use'
+        terms_of_sales:
+            purchaser: 'I read & accept Purchaser Terms of Sales'
+            provider: 'I read & accept Provider Terms of Sales'
+            logistician: 'I read & accept Logistician Terms of Sales'
+    four:
+        title: 'Validate your Account'
+
+button:
+    step: 'Go to'
+    modify: 'Back'
+    back: 'Back to'
+    finish: 'Create Account'
+    login: 'Connect with your account'
+    resend: 'Resend the validation email'
+
+help:
+    step:
+        two:
+            file: |
+                Allowed file types are "pdf, tiff, jpg, jpeg, png".
+                Allowed maximum size is 5MB.
+
+error:
+    unexpected: "An unexpected error happened while saving your user and company account. Please, try again."
+    zip_code: 'Invalid Zip code'
+    file: 
+        type: 'Invalid file type. Allowed file types are "pdf, tiff, jpg, jpeg, png".'
+        size: 'The file is too large ({{ size }} {{ suffix }}). Allowed maximum size is {{ limit }} {{ suffix }}.'
+
+flash:
+    emailconfirm: Congratulation! Your email address confirmed successfully. We will Contact you soon.
+    invalidaccounttype: Please choose a valid account type.
+    token_missing: Invalid URL or Email Address already confirmed.
+    mail_send: Email has been sent successfully. Please check your inbox.

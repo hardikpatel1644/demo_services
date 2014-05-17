@@ -1,0 +1,53 @@
+{# app/Resources/views/layout/base.html.twig #}
+{% trans_default_domain 'app' %}
+{%- block html_tag %}
+<!DOCTYPE html>
+<html class="app" {% block html_attributes -%}{% endblock %}>
+{% endblock %}
+    {% block head_tag %}
+    <head {% block head_attributes -%}{% endblock %}>
+        {% block title %}
+            <title>{% block title_content %}{{ 'brand.name'|trans }}{% endblock %}</title>
+        {% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        {% block metadatas %}
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        {% endblock %}
+
+        {% block stylesheets %}
+            {% stylesheets output='min/app.min.css'
+                '@bootstrap_css'
+                '@fontawesome_css'
+                '@theme_css'
+            %}
+                <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        {% block head_javascripts %}
+            <!--[if lt IE 9]>
+            {% javascripts output='min/ie.min.js' '@ie_js' %}
+                <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+            <![endif]-->
+        {% endblock %}
+    </head>
+    {% endblock %}
+
+    {% block body_tag %}
+    <body {% block body_attributes -%}{% endblock %}>
+    {% endblock %}
+        {% block content %}{% endblock %}
+
+        {% block javascripts %}
+            {% javascripts output='min/app.min.js'
+                '@jquery_js'
+                '@bootstrap_js'
+                '@theme_js'
+            %}
+                <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

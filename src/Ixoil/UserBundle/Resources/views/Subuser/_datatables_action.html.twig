@@ -1,0 +1,20 @@
+{% trans_default_domain "subuser" %}
+
+<a href="{{ path(edit_route,{'id':dt_item}) }}" class="text-info" data-tooltip="tooltip" data-placement="top" title="{{ 'title.edit'| trans }}">
+    <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-edit fa-stack-1x fa-inverse"></i>
+    </span>
+</a>
+<a href="{{ path(update_password_route,{'id':dt_item}) }}" class="text-warning" data-tooltip="tooltip" data-placement="top" title="{{ 'title.update_password'| trans }}">
+    <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-unlock-alt fa-stack-1x fa-inverse"></i>
+    </span>
+</a>
+<a href="#" data-tooltip="tooltip" class="text-danger" data-url="{{ path(delete_route,{'id':dt_item}) }}" data-toggle="modal" data-target="#confirmDelete" data-title="{{ 'subuser.delete_user'| trans }}" data-message="{{ 'core.messages.confirm_message'| trans ( {}, 'core') }} " data-placement="top" title="{{ 'title.delete'| trans }}">
+    <span class="fa-stack">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+    </span>
+</a>

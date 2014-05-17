@@ -1,0 +1,69 @@
+
+<form action="{{ admin.generateUrl('rejectAccount',{'accountid':admin.getSubject().getId()},true) }}" method="POST">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="{{ 'rejection_form.reason1' |trans({}, admin.translationdomain) }}" name="reason[]">
+            {{ 'rejection_form.reason1' |trans({}, admin.translationdomain) }}
+        </label>
+    </div>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="{{ 'rejection_form.reason2' |trans({}, admin.translationdomain) }}" id="reason2" name="reason2">
+            {{ 'rejection_form.reason2' |trans({}, admin.translationdomain) }}
+        </label>
+    </div>
+
+    <script>
+        document.getElementById('reason2').onchange = function() {
+            document.getElementById('inlineCheckbox1').disabled = !this.checked ;
+            document.getElementById('inlineCheckbox2').disabled = !this.checked ;
+            document.getElementById('inlineCheckbox3').disabled = !this.checked ;
+            document.getElementById('inlineCheckbox4').disabled = !this.checked ;
+        };
+    </script>
+    <style>
+
+        #reason2inner { margin-left:20px;}
+        #othercontainer {display: none; margin-left:20px;}
+    </style>
+
+    <div id="reason2inner">
+        <label class="checkbox">
+            <input type="checkbox" value="{{ 'rejection_form.fields.company_zipcode' |trans({}, admin.translationdomain) }}" 
+                   name="invalid_fields[]" id="inlineCheckbox1" disabled>{{ 'rejection_form.fields.company_zipcode' |trans({}, admin.translationdomain) }}
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="{{ 'rejection_form.fields.company_phone' |trans({}, admin.translationdomain) }}" 
+                   name="invalid_fields[]" id="inlineCheckbox2" disabled>{{ 'rejection_form.fields.company_phone' |trans({}, admin.translationdomain) }}
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="{{ 'rejection_form.fields.company_fax' |trans({}, admin.translationdomain) }}" 
+                   name="invalid_fields[]" id="inlineCheckbox3" disabled>{{ 'rejection_form.fields.company_fax' |trans({}, admin.translationdomain) }}
+        </label>
+        <label class="checkbox">
+            <input type="checkbox" value="{{ 'rejection_form.fields.company_vat' |trans({}, admin.translationdomain) }}" 
+                   name="invalid_fields[]" id="inlineCheckbox4" disabled>{{ 'rejection_form.fields.company_vat' |trans({}, admin.translationdomain) }}
+        </label>
+
+    </div>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="{{ 'rejection_form.reason3' |trans({}, admin.translationdomain) }}" name="reason[]" >
+            {{ 'rejection_form.reason3' |trans({}, admin.translationdomain) }}
+        </label>
+    </div>
+
+    {#<div class="checkbox">
+        <label>
+            <input type="checkbox" value="" id="others" name="reason[]">
+            {{ 'rejection_form.others' |trans({}, admin.translationdomain) }}
+        </label>
+    </div>
+    <div id="othercontainer">
+        <textarea data-required="true" name="" data-minwords="6" rows="6" class="form-control parsley-validated" name="reason[]"></textarea>
+    </div>#}
+    <br>
+    <input class="pull-right" type="submit" value="{{ 'rejection_form.ok' |trans({}, admin.translationdomain) }}"/>
+</form>

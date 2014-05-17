@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Service -->
+        <parameter key="ixoil_file.manager.class">Ixoil\FileBundle\Service\FileHelper</parameter>
+        
+        <!-- EventListener -->
+        <parameter key="ixoil_file.listener.request.class">Ixoil\FileBundle\EventListener\RequestListener</parameter>
+    </parameters>
+    
+    <services>
+        <!-- Service -->
+        <service id="ixoil_file.manager" class="%ixoil_file.manager.class%">
+            <argument type="service" id="kernel" />
+            <argument>%ixoil_file.data_path%</argument>
+        </service>
+        
+        <!-- EventListener -->
+        <service id="ixoil_file.listener.request" class="%ixoil_file.listener.request.class%">
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+            <argument type="service" id="ixoil_file.manager" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<orm-designer version="2.3.3.860" mvc="Symfony2" orm="Doctrine2">
+  <module name="Ixoil\UserBundle" import-format="Doctrine2Php" import-path="../../Entity" uuid="87e3482e-ff21-48d3-8f69-4e1e7e091d59">
+    <entity name="ProviderAccount" uuid="c7ef4958-1826-4429-a2fc-cf34129ce146">
+      <field name="account_id" type="integer" required="true" unique="true" primary="true" uuid="970d638e-1e35-472b-855a-8a6ab0ca9242"/>
+      <field name="activities" description="Company sub-activity types" type="array" required="true" uuid="8af7d04b-68d9-4b60-b8d9-649883bae136"/>
+      <field name="file_tos" description="Path to terms of use displayed to customers" type="string" size="255" uuid="0ffae33c-b962-40ac-8f42-5648201d3603"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_account_provider</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="ProviderAccount" to="Account" caption="Provider Details" owner-alias="providerAccount" inverse-alias="account" uuid="fb41ce3c-8ad8-46db-a7bf-801bfcc57356">
+      <association-field from="account_id" to="id"/>
+    </association>
+    <entity name="PurchaserAccount" uuid="f220c095-fa91-4028-bfe6-a4602ad1b1a7">
+      <field name="account_id" type="integer" required="true" unique="true" primary="true" uuid="83657d2f-558e-40b9-89e7-4683fffa556a"/>
+      <field name="activities" description="Company sub-activity types" type="array" required="true" uuid="fb346528-003f-4542-af1b-4079085bfccb"/>
+      <field name="agency_billing_id" type="integer" uuid="9dc54e4f-1ab8-4345-8bec-5c79aa46cea6"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_account_purchaser</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="PurchaserAccount" to="Account" caption="Purchaser Details" owner-alias="purchaserAccount" inverse-alias="account" uuid="aa99253d-9da2-411f-a9f1-1e088c336096">
+      <association-field from="account_id" to="id"/>
+    </association>
+    <association from="PurchaserAccount" to="AgencyBilling" caption="Default Billing Details" inverse-alias="billingDetails" description="Billing details used by group agencies." uuid="a805c91a-51b5-43aa-90c9-adbaa5128a45">
+      <association-field from="agency_billing_id" to="id"/>
+    </association>
+    <entity name="LogisticianAccount" uuid="e637b15e-2c25-4629-8ba8-68fc7bf8545f">
+      <field name="account_id" type="integer" required="true" unique="true" primary="true" uuid="97cb95b5-43d6-456f-b5b2-fd7fa48c7db7"/>
+      <field name="delivery_areas" type="array" required="true" uuid="691ff938-989c-4fae-b6d2-527603881206"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_account_logistician</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="LogisticianAccount" to="Account" caption="Logistician Details" owner-alias="logisticianAccount" inverse-alias="account" uuid="77f8bc74-5266-434b-992d-5f9296386ffb">
+      <association-field from="account_id" to="id"/>
+    </association>
+    <entity name="Account" uuid="dbba7bfd-87d6-41cd-87ad-87852fa9051b">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="13a4f8dc-094b-4b0a-b593-17bcc638413e"/>
+      <field name="is_locked" type="boolean" default="0" required="true" uuid="206c4cb4-2bb7-407e-8328-72d4729054c0"/>
+      <field name="status" type="integer" default="0" required="true" uuid="68c2eb17-c4b3-456a-9c68-a798a2f6e268"/>
+      <field name="name" type="string" size="255" required="true" uuid="8dbc03c8-7d62-43d9-9f87-054b93ea6a9e"/>
+      <field name="company_number" type="string" size="100" required="true" uuid="9b1b6b82-defd-4e23-96ad-0731e96f084a"/>
+      <field name="vat_number" type="string" size="100" required="true" uuid="cb9aeb5f-cfa8-4f80-81c0-ff8504792e66"/>
+      <field name="file_bank_statement" description="Path to company bank statement document" type="string" size="255" required="true" uuid="a4d14e13-4392-4805-8fa8-7c4f52ee39c6"/>
+      <field name="file_certificate_incorporation" description="Path to company certificate of incorporation document" type="string" size="255" required="true" uuid="451b5a32-6a91-43a9-a562-72b44df387e4"/>
+      <field name="tos_version" description="Accepted terms of use version" type="decimal" required="true" uuid="4d946339-2150-4ea5-a29d-8fbb831caa01"/>
+      <field name="address_id" type="integer" required="true" unique="true" uuid="51464973-7d93-430b-a1e9-8042be5dad67"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_account</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="Account" to="Address" caption="Company Address" inverse-alias="address" uuid="d50873a7-3bfd-4488-a2c7-92e042752562">
+      <association-field from="address_id" to="id"/>
+    </association>
+    <entity name="Subscription" uuid="14b40942-eed3-4409-9a59-d568a792f73d">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="21a9a301-ae27-4db0-9278-9bce89853c44"/>
+      <field name="code" type="string" required="true" unique="true" uuid="4becb948-0f8e-4207-ae72-7f5b0281c9e5"/>
+      <field name="name" type="string" required="true" uuid="abee87b0-a76c-49ed-8be7-4d9917204009"/>
+      <field name="account_type" type="string" enum-values="'purchaser','logistician','provider','purchaser-logistician'" required="true" uuid="85aebccd-9ed0-475b-b2e5-8829c45f0370"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_subscription</attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="SubscriptionOption" uuid="d5590e77-57fb-4fef-a654-2b7fed69dec2">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="77e669cd-477c-4615-b640-5c7ab59e51b2"/>
+      <field name="code" type="string" required="true" unique="true" uuid="c1176d39-057e-4e02-8ea2-014b0d2756f0"/>
+      <field name="name" type="string" required="true" uuid="fdeb75bc-2693-424f-8f5e-9e561d078b48"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_subscription_option</attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="SubscriptionPrice" uuid="f8e049b0-ae75-4ec5-b803-d0be4a3a403e">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="01151de0-8185-482f-851a-644bc7c95f55"/>
+      <field name="name" type="string" size="255" required="true" uuid="541385c8-663a-488b-b69c-6f565b2edb16"/>
+      <field name="duration" description="In months" type="integer" required="true" uuid="67fd85c1-cb0c-45d4-8e73-fbb53fc4ef2b"/>
+      <field name="price" type="float" required="true" uuid="f746c4fe-15c0-46d0-8921-2dc6228103c4"/>
+      <field name="subscription_id" type="integer" uuid="328b944a-e9a1-43fa-af71-b6f6f423c712"/>
+      <field name="subscription_option_id" type="integer" uuid="0b532be2-9867-47e5-bc64-3eb34ca1fcea"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_subscription_price</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="SubscriptionPrice" to="Subscription" caption="Subscription to Price" owner-alias="prices" inverse-alias="subscription" uuid="eccf4bd5-3646-45d0-a58b-26d09cf673b9">
+      <association-field from="subscription_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-inverse">
+          <attribute name="cascade">
+            <attribute name="cascade-all">true</attribute>
+          </attribute>
+          <attribute name="orphan-removal">true</attribute>
+        </attribute>
+      </orm-attributes>
+    </association>
+    <association from="SubscriptionPrice" to="SubscriptionOption" caption="SubscriptionOption to Price" owner-alias="prices" inverse-alias="subscriptionOption" uuid="1a68739e-a9f2-48b0-b375-6f8292b8b654">
+      <association-field from="subscription_option_id" to="id"/>
+      <orm-attributes>
+        <attribute name="side-inverse">
+          <attribute name="cascade">
+            <attribute name="cascade-persist">false</attribute>
+            <attribute name="cascade-remove">false</attribute>
+            <attribute name="cascade-all">true</attribute>
+          </attribute>
+          <attribute name="orphan-removal">true</attribute>
+        </attribute>
+      </orm-attributes>
+    </association>
+    <entity name="SubscriptionToAccount" uuid="622414f9-8707-47eb-a06a-b5c1a24ae2c5">
+      <field name="subscription_id" type="integer" required="true" primary="true" uuid="61c80cd0-8ce1-4909-b37f-f188b49e224a"/>
+      <field name="account_id" type="integer" required="true" primary="true" uuid="4c5e12f9-c21a-415c-b6cb-bca16a441dab"/>
+      <field name="start_date" type="datetime" required="true" uuid="24a638f5-19d3-4b3b-9b7f-a504e2d233af"/>
+      <field name="end_date" type="datetime" required="true" uuid="044b7aa8-eca6-4825-aa97-847cf620ed8f"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_subscription2account</attribute>
+        <attribute name="repository-class">Ixoil\UserBundle\Repository\SubscriptionToAccountRepository</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="SubscriptionToAccount" to="Subscription" caption="Subscription to Account" inverse-alias="subscription" uuid="7cd89515-bac4-4897-a5b9-c139813956e4">
+      <association-field from="subscription_id" to="id"/>
+    </association>
+    <association from="SubscriptionToAccount" to="Account" caption="Account to Subscription" inverse-alias="account" uuid="26e1f5a2-21e0-4370-b12a-445fa99053d9">
+      <association-field from="account_id" to="id"/>
+    </association>
+    <entity name="SubscriptionOptionToAccount" uuid="c9eef0e8-56d2-482c-b6d5-780b53f51310">
+      <field name="subscription_option_id" type="integer" required="true" primary="true" uuid="8a7bc7ff-0573-4e45-8ab9-7115bb5d08f9"/>
+      <field name="account_id" type="integer" required="true" primary="true" uuid="c900ba33-95b5-4918-ae7e-6af3468f5a31"/>
+      <field name="start_date" type="datetime" required="true" uuid="e5df20f8-0545-4f3f-9a02-0690b87ff70c"/>
+      <field name="end_date" type="datetime" required="true" uuid="0e46dda4-7892-4215-9f0c-fc709d46cd76"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_subscription_option2account</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="SubscriptionOptionToAccount" to="Account" caption="Account to SubscriptionOption" inverse-alias="account" uuid="26d7ab11-bc8b-4d35-9940-609741b71d2b">
+      <association-field from="account_id" to="id"/>
+    </association>
+    <association from="SubscriptionOptionToAccount" to="SubscriptionOption" caption="SubscriptionOption to Account" inverse-alias="subscriptionOption" uuid="4a441bb9-cfb3-4376-a4c2-0c7d7d23783e">
+      <association-field from="subscription_option_id" to="id"/>
+    </association>
+    <entity name="SubscriptionToSubscriptionOption" uuid="ea154a13-cc24-4e18-8ba5-fbec9efdfec1">
+      <field name="subscription_id" type="integer" required="true" primary="true" uuid="86d36637-347a-4a98-b1c5-efec97984647"/>
+      <field name="subscription_option_id" type="integer" required="true" primary="true" uuid="2dfeb564-4a8d-4039-9c2d-24662c7dc18d"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_subscription2subscription_option</attribute>
+      </orm-attributes>
+    </entity>
+    <many-to-many mn-entity="SubscriptionToSubscriptionOption" caption="Subscription to SubscriptionOption" uuid="fdc3fb15-231e-442d-91b4-dc519db5bb37">
+      <many-to-many-entity name="SubscriptionOption" owning-side="true" alias="options" uuid="6b295323-fb77-49ab-a3c0-c6382b5b69ce">
+        <many-to-many-field from="subscription_option_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="Subscription" owning-side="false" alias="subscriptions" uuid="52ba1112-7a94-41cb-a08a-3a48aadede15">
+        <many-to-many-field from="subscription_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="User" uuid="3eff1df6-42d9-433a-9818-82f685444287">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="491941eb-6669-48ea-bf4d-64739bc0ead4"/>
+      <field name="account_id" type="integer" uuid="9af70053-c335-4d7b-ba37-e8806dda1b1d"/>
+      <field name="is_owner" type="boolean" default="false" required="true" uuid="61c5cea6-4344-433f-9410-e6e40d9a87c8"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_user</attribute>
+        <attribute name="repository-class">Ixoil\UserBundle\Repository\UserRepository</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="User" to="Account" caption="User Company" owner-alias="users" inverse-alias="account" uuid="48df9e07-ee9d-4a6b-9b26-11a15255260f">
+      <association-field from="account_id" to="id"/>
+    </association>
+    <entity name="Group" uuid="bce5ff3b-4e0c-4cb4-bdbc-cf4adb6dbf6f">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="1ca3c553-0159-4e18-9ba3-5665dbfbd14d"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_group</attribute>
+      </orm-attributes>
+    </entity>
+    <entity name="Notification" uuid="bd2dec2c-e913-4963-aa73-e069dcff2ba8">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="18ca30fe-d274-4f67-9e07-5b7421d22d9b"/>
+      <field name="code" type="string" required="true" uuid="a9fdcc66-5e80-4eda-aeab-a32d17628580"/>
+      <field name="arguments" type="json_array" uuid="f5c3f48d-6b14-4e3b-abf7-cad3e3da3e8f"/>
+      <field name="deletable" type="boolean" required="true" uuid="d32e8964-2a74-4542-9041-2b87fbc3ff8d"/>
+      <field name="created_at" type="datetime" required="true" uuid="622729ae-d183-4e2a-b1bd-97b5f275bd6c"/>
+      <field name="read_at" type="datetime" uuid="2c7aae07-bb14-4f9d-93ef-2cf67f3b04e1"/>
+      <field name="user_id" type="integer" required="true" uuid="cb8539fb-b9c2-4425-b3d3-dc17ea328a8c"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_user_notification</attribute>
+        <attribute name="repository-class">Ixoil\UserBundle\Repository\NotificationRepository</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="Notification" to="User" inverse-alias="user" uuid="cd229465-b22b-4e30-a112-fcfd4cea5b7b">
+      <association-field from="user_id" to="id"/>
+    </association>
+    <orm-attributes>
+      <attribute name="namespace">Ixoil\UserBundle\Entity</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+      <attribute name="file-suffix">without-suffix</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <entity uuid="14b40942-eed3-4409-9a59-d568a792f73d" position-x="839" position-y="78" size-x="0" size-x2="108" size-y="0" size-y2="73"/>
+    <entity uuid="3eff1df6-42d9-433a-9818-82f685444287" position-x="389" position-y="28" size-x="0" size-x2="103" size-y="0" size-y2="59"/>
+    <many-to-many-association-entity uuid="52ba1112-7a94-41cb-a08a-3a48aadede15" caption1-position-x="-63" caption1-position-y="7" center-position-x="0" center-position-y="0"/>
+    <entity uuid="622414f9-8707-47eb-a06a-b5c1a24ae2c5" position-x="571" position-y="278" size-x="0" size-x2="120" size-y="0" size-y2="73"/>
+    <many-to-many-association-entity uuid="6b295323-fb77-49ab-a3c0-c6382b5b69ce" caption1-position-x="-23" caption1-position-y="-2" center-position-x="0" center-position-y="0"/>
+    <module uuid="87e3482e-ff21-48d3-8f69-4e1e7e091d59" bk-color="4294638066" position-x="361" position-y="72" size-x="11" size-x2="1339" size-y="22" size-y2="828"/>
+    <entity uuid="bce5ff3b-4e0c-4cb4-bdbc-cf4adb6dbf6f" position-x="89" position-y="178" size-x="0" size-x2="67" size-y="0" size-y2="31"/>
+    <entity uuid="bd2dec2c-e913-4963-aa73-e069dcff2ba8" position-x="89" position-y="28" size-x="0" size-x2="117" size-y="0" size-y2="115"/>
+    <entity uuid="c7ef4958-1826-4429-a2fc-cf34129ce146" position-x="55" position-y="578" size-x="0" size-x2="104" size-y="0" size-y2="59"/>
+    <entity uuid="c9eef0e8-56d2-482c-b6d5-780b53f51310" position-x="606" position-y="428" size-x="0" size-x2="149" size-y="0" size-y2="73"/>
+    <entity uuid="d5590e77-57fb-4fef-a654-2b7fed69dec2" position-x="921" position-y="428" size-x="0" size-x2="92" size-y="0" size-y2="59"/>
+    <entity uuid="dbba7bfd-87d6-41cd-87ad-87852fa9051b" position-x="304" position-y="478" size-x="0" size-x2="187" size-y="0" size-y2="157"/>
+    <entity uuid="e637b15e-2c25-4629-8ba8-68fc7bf8545f" position-x="39" position-y="378" size-x="0" size-x2="111" size-y="0" size-y2="45"/>
+    <entity uuid="ea154a13-cc24-4e18-8ba5-fbec9efdfec1" position-x="789" position-y="278" size-x="0" size-x2="172" size-y="0" size-y2="60"/>
+    <entity uuid="f220c095-fa91-4028-bfe6-a4602ad1b1a7" position-x="460" position-y="728" size-x="0" size-x2="129" size-y="0" size-y2="59"/>
+    <entity uuid="f8e049b0-ae75-4ec5-b803-d0be4a3a403e" position-x="1161" position-y="328" size-x="0" size-x2="149" size-y="0" size-y2="101"/>
+  </visual-data>
+</orm-designer>

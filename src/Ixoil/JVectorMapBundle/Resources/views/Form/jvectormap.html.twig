@@ -1,0 +1,38 @@
+{% block jvectormap_widget %}
+{% trans_default_domain 'jvectormap' %}
+
+    {% set postfix = '_map' %}
+
+    {% for child in form %}
+        {{- form_widget(child) -}}
+    {% endfor %}
+
+    <div class="btn-group btn-group-sm jvectormap-buttons">
+        <button type="button" class="jvectormap-selectall btn btn-default">
+            <i class="fa fa-check"></i> {{'jvectormap.select_all_regions'|trans}}
+        </button>
+        <button type="button" class="jvectormap-unselectall btn btn-default">
+            <i class="fa fa-times"></i> {{'jvectormap.clear_all_regions'|trans}}
+        </button>
+    </div>
+    <div id="{{ id }}{{ postfix }}"
+        class="{% if attr.class is defined %} {{- attr.class }} {% endif %}jvectormap-field"
+        data-map="{{ map }}"
+        data-regions-selectable="{{ regionsSelectable }}"
+        data-zoom-buttons="{{ zoomButtons }}"
+        data-zoom-on-scroll="{{ zoomOnScroll }}"
+        data-background-color="{{ backgroundColor }}"
+        data-region-style-initial="{{ regionStyleInitial }}"
+        data-region-style-hover="{{ regionStyleHover }}"
+        data-region-style-selected="{{ regionStyleSelected }}"
+        data-region-style-selected-hover="{{ regionStyleSelectedHover }}"
+        {{ block('widget_container_attributes') }} style="width:100%; height:{{ height }}">
+    </div>
+    <div class="row jvectormap-regions">
+        <div class="col-md-4 jvectormap-regions-1"></div>
+        <div class="col-md-4 jvectormap-regions-2"></div>
+        <div class="col-md-4 jvectormap-regions-3"></div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,27 @@
+{% extends "IxoilEmailBundle::mail.layout.html.twig" %}
+{# content block start #}    
+{% block content %}
+    <tr>
+        <td bgcolor="#FFFFFF" colspan="2">
+            <table width="600" cellspacing="0" cellpadding="0" border="0" align="left">
+                <tbody>
+                    <tr>
+                        <td colspan="3"><img width="10" border="0" height="10" src="{{ asset('bundles/ixoilemail/images/spacer10.png') }}"></td>
+                    </tr>
+                    <tr>
+                        <td width="20"><img width="20" border="0" height="20" src="{{ asset('bundles/ixoilemail/images/spacer20.png') }}"></td>
+                        <td width="560" style="text-align:left">
+
+                            <p align="left"></p><h4 style="font-weight:bold;color:#000000; margin-top:0px;">Bonjour {{ mail_content.name }},</h4><p></p>
+                            <p align="left" style="color:#625454; margin-bottom:10px;">{{ 'email.registration.completed'|trans({}, 'email') }}</p>
+                            <p align="left" style="color:#625454; margin-bottom:10px;">{{ 'email.registration.activationtext' |trans ({},'email')}}</p>
+                            <p align="left" style="color:#625454; margin-bottom:10px;">{{ 'email.title.thanksMsg'|trans({}, 'email') }}</p>    
+                        </td>
+                        <td width="20"><img width="20" border="0" height="20" src="{{ asset('bundles/ixoilemail/images/spacer20.png') }}"></td>
+                    </tr>
+                </tbody>
+            </table>   
+        </td>
+    </tr>
+{% endblock%}
+{# content block ends #}    

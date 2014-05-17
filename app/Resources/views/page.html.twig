@@ -1,0 +1,14 @@
+{# app/Resources/views/page.html.twig #}
+{% extends '::Layout/layout.html.twig' %}
+
+{% block body_container %}
+    <div class="container">
+        <div class="content m-t">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    {% block body_content %}{% endblock %}
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

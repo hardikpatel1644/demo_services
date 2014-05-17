@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <!-- Menu service -->
+        <parameter key="ixoil_core.menu.class">Ixoil\CoreBundle\Menu\Menu</parameter>
+        
+        <!-- Menu -->
+        <parameter key="ixoil_core.menu.header.class">Ixoil\CoreBundle\Menu\HeaderMenu</parameter>
+        <parameter key="ixoil_core.menu.restricted.class">Ixoil\CoreBundle\Menu\RestrictedMenu</parameter>
+    </parameters>
+
+    <services>
+        <!-- Menu service -->
+        <service id="ixoil_core.menu.builder" class="%ixoil_core.menu.class%" abstract="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        
+        <!-- Menu -->
+        <service id="ixoil_core.menu.header.builder" class="%ixoil_core.menu.header.class%" parent="ixoil_core.menu.builder">
+        </service>
+        <service id="ixoil_core.menu.header" class="Knp\Menu\MenuItem" factory-service="ixoil_core.menu.header.builder" factory-method="create">
+            <tag name="knp_menu.menu" alias="ixoil_header" />
+        </service>
+        
+        <service id="ixoil_core.menu.restricted.builder" class="%ixoil_core.menu.restricted.class%" parent="ixoil_core.menu.builder">
+            <argument type="service" id="security.context" />
+        </service>
+        <service id="ixoil_core.menu.restricted" class="Knp\Menu\MenuItem" factory-service="ixoil_core.menu.restricted.builder" factory-method="create">
+            <tag name="knp_menu.menu" alias="ixoil_restricted" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,10 @@
+.jvectormap-regions .jvectormap-region {
+    font-weight: bold;
+}
+.jvectormap-regions .jvectormap-region.unselected {
+    color: #C7C7C7;
+    font-weight: normal;
+}
+.jvectormap-buttons {
+    margin-bottom: 10px;
+}

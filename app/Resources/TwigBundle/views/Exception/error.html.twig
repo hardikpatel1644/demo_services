@@ -1,0 +1,7 @@
+{# app/Resources/TwigBundle/views/Exception/error.html.twig #}
+{% extends '::error.html.twig' %}
+
+{% block body_content %}
+    <h1 class="h text-white animated fadeInDownBig">{{ status_code }}</h1>
+    <h2>{{ 'error.page.message'|trans({ '%code%': status_code, '%text%': status_text }) }}</h2>
+{% endblock %}

@@ -1,0 +1,33 @@
+header:
+    home: "Home"
+    aboutUs: "About Us"
+    whoWeAre: "Who we are"
+    contact: "Contact"
+
+restricted:
+    dashboard: Dashboard
+    account:
+        title: Account
+        managemyaccount: Manage Account
+        mysubscription: Subscription
+    users:
+        title: Users
+        list: Manage users
+        create: Create a new user
+        edit: Edit an user
+        password: Update a password
+    agency:
+        title: Agencies
+        createagency: Create a new agency
+        manageagency: Manage agencies
+    order:
+        title: Order
+        makeanorder: Make an order
+        seemyorder: See my orders
+    myprovider: My provider
+    myoutstanding: My credit
+    mytank: Tanks
+    
+nomenu:
+    subscription:
+        renew: Subscription

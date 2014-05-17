@@ -1,0 +1,3 @@
+ixoil_stockmarket_annotation:
+    resource: "@IxoilStockMarketBundle/Controller"
+    type:     annotation

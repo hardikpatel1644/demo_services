@@ -1,0 +1,27 @@
+index:
+    infos:
+        title: "Discover your trading platform"
+    demo: 
+        title: "Create a demo account?"
+        link:
+            purchaser: "Are you a purchaser?"
+            provider: "Are you a provider?"
+            logistician: "Are you a logistician?"
+            purchaser-logistician: "Are you a purchaser & logistician?"
+contact:
+    form:
+        title: "Send us a message"
+        label:
+            name: "Your name"
+            email: "Your email address"
+            company: "Your company name"
+            phone: "Your phone number"
+            message: "Your message"
+        submit: "Send your message"
+    address:
+        title: "Contact us"
+    message:
+        sent: "Your message has been successfully sent."
+        error: "An unexpected error occured when sending your message. Please try again or come back later."
+    email:
+        subject: "A message has been sent from the contact form"

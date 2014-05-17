@@ -1,0 +1,23 @@
+{# src/Ixoil/CmsBundle/Resources/views/Contact/email.html.twig #}
+
+{% block body %}
+    <div id="container">
+        <div id="wrapper">
+            <div id="content">
+            {% block content %}
+                A message has been sent from the contact form.
+                <br />
+                <div id="box">
+                    Name: {{ user_detail.getName() }} <br/>
+                    Email: {{ user_detail.getEmail() }}<br/>
+                    Company: {{ user_detail.getCompany() }} <br/>
+                    Phone: {{ user_detail.getPhone() }}
+                    <br/>
+                    Message :
+                	<div>{{ user_detail.getMessage() }}</div>
+                </div>
+                {% endblock %}
+            </div>                     
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Provider -->
+        <parameter key="ixoil_stockmarket.provider.class">Ixoil\StockMarketBundle\Provider\ProviderService</parameter>
+        
+        <!-- Manager -->
+        <parameter key="ixoil_stockmarket.stockvalue.manager.class">Ixoil\StockMarketBundle\Manager\StockValueManager</parameter>
+    </parameters>
+
+    <services>
+        <!-- Provider -->
+        <service id="ixoil_stockmarket.provider.service" class="%ixoil_stockmarket.provider.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="logger" />
+        </service>
+        
+        <!-- Manager -->
+        <service id="ixoil_stockmarket.stockvalue.manager" class="%ixoil_stockmarket.stockvalue.manager.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+    </services>
+</container>

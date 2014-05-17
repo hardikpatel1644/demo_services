@@ -1,0 +1,70 @@
+{# app/Resources/views/Layout/layout.logged.html.twig #}
+{%  extends '::Layout/layout.base.html.twig' %}
+
+{% trans_default_domain 'app' %}
+
+{% block header_content %}
+    {{ knp_menu_render('ixoil_header', {'template': 'IxoilCoreBundle:Menu:knp_menu.html.twig'}) }}
+
+    {# logout form in header menu #}
+    <ul class="nav navbar-nav navbar-right">
+        {% set notificationsCount = ixoil_notifications_count() %}
+        <li class="hidden-xs" id="notification-dropdown" data-href="{{ url('ixoil_user_notification_update') }}">
+            <a href="#" class="dropdown-toggle dk" data-toggle="dropdown"  data-tooltip="tooltip" data-placement="bottom" title="{{ 'header.link.notification'|trans }}">
+                <i class="fa fa-bell"></i>
+                {% if notificationsCount > 0 %}
+                    <span class="badge badge-sm up m-l-n-sm count bg-danger">{{ notificationsCount }}</span>
+                {% endif %}
+            </a>
+            <section class="dropdown-menu aside-xl animated fadeInUp">
+                <section class="panel bg-white">
+                    <header class="panel-heading b-light bg-light">
+                        <strong>
+                            {{ 'header.notifications.dropdown.header'|transchoice(notificationsCount, { count: notificationsCount }) }}
+                        </strong>
+                    </header>
+                    <div class="list-group list-group-alt scrollable" style="max-height:300px">
+                        {% set notifications = ixoil_notifications() %}
+                        {% for notification in notifications %}
+                            {% include 
+                                [
+                                    'IxoilUserBundle:Notification:dropdown/' ~ notification.code ~ '.html.twig',
+                                    'IxoilUserBundle:Notification:dropdown/base.html.twig'
+                                ] ignore missing with {'notification': notification} 
+                            %}
+                        {% else %}
+                            {% include 'IxoilUserBundle:Notification:dropdown/empty.html.twig' %}
+                        {% endfor %}
+                    </div>
+                </section>
+            </section>
+        </li>
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <li>
+            <a class="hidden-xs" href="{{ path('sonata_admin_dashboard')}}" data-toggle="tooltip" data-placement="bottom" title="{{ 'header.link.admin'|trans }}">
+                <i class="fa fa-dashboard"></i>
+            </a>
+            <a class="visible-xs" href="{{ path('sonata_admin_dashboard')}}">
+                <i class="fa fa-dashboard"></i> {{ 'header.link.admin'|trans }}
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a class="hidden-xs" href="{{ path('ixoil_dashboard')}}" data-toggle="tooltip" data-placement="bottom" title="{{ 'header.link.dashboard'|trans }}">
+                <i class="fa fa-dashboard"></i>
+            </a>
+            <a class="visible-xs" href="{{ path('ixoil_dashboard')}}">
+                <i class="fa fa-dashboard"></i> {{ 'header.link.dashboard'|trans }}
+            </a>
+        </li>
+        {% endif %}
+        <li>
+            <a class="hidden-xs" href="{{ path('fos_user_security_logout')}}" data-toggle="tooltip" data-placement="bottom" title="{{ 'header.link.signout'|trans }}">
+                <i class="fa fa-power-off"></i>
+            </a>
+            <a class="visible-xs" href="{{ path('fos_user_security_logout')}}">
+                <i class="fa fa-power-off"></i> {{ 'header.link.signout'|trans }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}

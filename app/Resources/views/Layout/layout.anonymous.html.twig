@@ -1,0 +1,20 @@
+{# app/Resources/views/Layout/layout.anonymous.html.twig #}
+{%  extends '::Layout/layout.base.html.twig' %}
+
+{% trans_default_domain 'app' %}
+
+{% block header_content %}
+    {{ knp_menu_render('ixoil_header', {'template': 'IxoilCoreBundle:Menu:knp_menu.html.twig'}) }}
+
+    {# login form in header menu #}
+    {% if app.request.get('_route') != 'fos_user_security_login' %}
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="{{ path ('fos_user_security_login')}}" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-sign-in"></i> {{ 'header.link.signin'|trans }}
+                </a>
+                {% render controller("FOSUserBundle:Security:login") %}
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}

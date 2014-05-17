@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Helper -->
+        <parameter key="ixoil_user.helper.registration.class">Ixoil\UserBundle\Helper\RegistrationHelper</parameter>
+        
+        <!-- Flow -->
+        <parameter key="ixoil_user.form.registration.flow.class">Ixoil\UserBundle\Form\Flow\RegistrationFlow</parameter>
+        
+        <!-- Handler -->
+        <parameter key="ixoil_user.form.registration.handler.class">Ixoil\UserBundle\Form\Handler\RegistrationHandler</parameter>
+        
+        <!-- Model -->
+        <parameter key="ixoil_user.form.registration.model.class">Ixoil\UserBundle\Form\Model\Registration</parameter>
+        <parameter key="ixoil_user.form.registration.model.purchaser.class">Ixoil\UserBundle\Form\Model\PurchaserRegistration</parameter>
+        <parameter key="ixoil_user.form.registration.model.provider.class">Ixoil\UserBundle\Form\Model\ProviderRegistration</parameter>
+        <parameter key="ixoil_user.form.registration.model.logistician.class">Ixoil\UserBundle\Form\Model\LogisticianRegistration</parameter>
+        <parameter key="ixoil_user.form.registration.model.purchaser-logistician.class">Ixoil\UserBundle\Form\Model\PurchaserLogisticianRegistration</parameter>
+        
+        <!-- Type -->
+        <parameter key="ixoil_user.form.registration.step1.type.class">Ixoil\UserBundle\Form\Type\RegistrationStep1Type</parameter>
+        <parameter key="ixoil_user.form.registration.step2.type.class">Ixoil\UserBundle\Form\Type\RegistrationStep2Type</parameter>
+        <parameter key="ixoil_user.form.registration.step3.type.class">Ixoil\UserBundle\Form\Type\RegistrationStep3Type</parameter>
+        <parameter key="ixoil_user.form.registration.step4.type.class">Ixoil\UserBundle\Form\Type\RegistrationStep4Type</parameter>
+    </parameters>
+
+    <services>
+        <!-- Helper -->
+        <service id="ixoil_user.helper.registration" class="%ixoil_user.helper.registration.class%">
+            <argument type="service" id="session" />
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="ixoil_file.manager" />
+            <argument type="service" id="ixoil_email.mailer.twig"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="fos_user.user_manager"/>
+            <argument type="service" id="service_container"/>
+            
+            <call method="setDefaultModel">
+                <argument>%ixoil_user.form.registration.model.class%</argument>
+            </call>
+            <call method="setPurchaserModel">
+                <argument>%ixoil_user.form.registration.model.purchaser.class%</argument>
+            </call>
+            <call method="setProviderModel">
+                <argument>%ixoil_user.form.registration.model.provider.class%</argument>
+            </call>
+            <call method="setLogisticianModel">
+                <argument>%ixoil_user.form.registration.model.logistician.class%</argument>
+            </call>
+            <call method="setPurchaserLogisticianModel">
+                <argument>%ixoil_user.form.registration.model.purchaser-logistician.class%</argument>
+            </call>
+        </service>
+
+        <!-- Flow -->
+        <service id="ixoil_user.form.registration.flow" class="%ixoil_user.form.registration.flow.class%" parent="craue.form.flow" scope="request">
+            <argument type="collection">
+                <argument type="service" id="ixoil_user.form.registration.step1.type" />
+                <argument type="service" id="ixoil_user.form.registration.step2.type" />
+                <argument type="service" id="ixoil_user.form.registration.step3.type" />
+                <argument type="service" id="ixoil_user.form.registration.step4.type" />
+            </argument>
+        </service>
+        
+        <!-- Handler -->
+        <service id="ixoil_user.form.registration.handler" class="%ixoil_user.form.registration.handler.class%" scope="request">
+            <argument type="service" id="ixoil_user.helper.registration" />
+            <argument type="service" id="ixoil_user.form.registration.flow" />
+            <argument type="service" id="request" />
+            <argument type="service" id="ixoil_file.manager" />
+        </service>
+
+        <!-- Type -->
+        <service id="ixoil_user.form.registration.step1.type" class="%ixoil_user.form.registration.step1.type.class%">
+            <tag name="form.type" alias="ixoil_registration_step1" />
+        </service>
+        <service id="ixoil_user.form.registration.step2.type" class="%ixoil_user.form.registration.step2.type.class%">
+            <tag name="form.type" alias="ixoil_registration_step2" />
+            <argument type="service" id="translator" />
+            <argument type="service" id="ixoil_user.helper.registration" />
+        </service>
+        <service id="ixoil_user.form.registration.step3.type" class="%ixoil_user.form.registration.step3.type.class%">
+            <tag name="form.type" alias="ixoil_registration_step3" />
+            <argument type="service" id="ixoil_user.helper.registration" />
+        </service>
+        <service id="ixoil_user.form.registration.step4.type" class="%ixoil_user.form.registration.step4.type.class%">
+            <tag name="form.type" alias="ixoil_registration_step4" />
+        </service>
+    </services>
+</container>

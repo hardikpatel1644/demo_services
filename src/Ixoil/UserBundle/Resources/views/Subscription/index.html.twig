@@ -1,0 +1,13 @@
+{# src/Ixoil/HomeBundle/Resources/views/Default/index.html.twig #}
+{% extends '::aside.html.twig' %}
+
+{% trans_default_domain 'subscription' %}
+
+{% block body_content %}
+    <header class="text-center">
+        <h4>{{ 'subscription.title'|trans }}</h4>
+    </header>
+    <section class="panel panel-default bg-white">
+       <a class="btn btn-group-justified btn-primary" href="{{ path ('ixoil_subscription') }}">{{ 'subscription.renew'|trans }}</a>
+    </section>
+{% endblock %}

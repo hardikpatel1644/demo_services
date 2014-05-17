@@ -1,0 +1,21 @@
+{% extends '::aside.html.twig' %}
+
+{% trans_default_domain 'user' %}
+
+{% block body_content %}
+    <section class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">                                                
+                    {{ 'resetting.already.reset'|trans({
+                        '%reset_link_start%' : '<a href="'~path('fos_user_resetting_request')~'">', 
+                        '%reset_link_end%' : '</a>' , 
+                        '%login_link_start%' : '<a href="'~path('fos_user_security_login')~'">', 
+                        '%login_link_end%' : '</a>'
+                        }|nl2br|raw
+                    }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

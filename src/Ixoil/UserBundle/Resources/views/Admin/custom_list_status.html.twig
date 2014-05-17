@@ -1,0 +1,27 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{# for editable fields #}
+{% block field_span_attributes %}
+    {% spaceless %}
+        {{ parent() }}
+        data-source="[{value: 0, text: '{{ 'company.status.value.0'|trans({}, "admin") }}'},{value: 1, text: '{{ 'company.status.value.1'|trans({}, "admin") }}'},{value: 2, text: '{{ 'company.status.value.2'|trans({}, "admin") }}'},{value: 3, text: '{{ 'company.status.value.3'|trans({}, "admin") }}'}]"
+    {% endspaceless %}
+{% endblock %}
+        
+{# to show field value #}
+{% block field %}
+{% spaceless %}
+    {% set label = "" %}
+    {% if value == 0 %}
+        {% set label = "inverse" %}
+    {% elseif value == 1 %}
+        {% set label = "important" %}
+    {% elseif value == 2 %}
+        {% set label = "warning" %}
+    {% elseif value == 3 %}
+        {% set label = "success" %}
+    {% endif %}
+        
+    <span class="label label-{{ label }}">{{ ('company.status.value.'~value)|trans({}, "admin") }}</span>  
+{% endspaceless %}
+{% endblock %}

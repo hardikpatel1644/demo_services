@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="ixoil_email.mailer.class">Ixoil\EmailBundle\Mailer\DefaultMailer</parameter>
+        <parameter key="ixoil_email.mailer.twig.class">Ixoil\EmailBundle\Mailer\TwigMailer</parameter>
+    </parameters>
+
+    <services>
+        <!-- Default mailer -->
+        <service id="ixoil_email.mailer.default" class="%ixoil_email.mailer.class%">
+            <argument type="service" id="kernel" />
+            <argument type="service" id="mailer" />
+            <argument>%mailer_default_sender%</argument>
+        </service>
+        
+        <!-- Twig mailer -->
+        <service id="ixoil_email.mailer.twig" class="%ixoil_email.mailer.twig.class%">
+            <argument type="service" id="kernel" />
+            <argument type="service" id="mailer" />
+            <argument>%mailer_default_sender%</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="translator"/>
+        </service>        
+    </services>
+</container>

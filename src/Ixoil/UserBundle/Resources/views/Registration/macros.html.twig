@@ -1,0 +1,21 @@
+{% trans_default_domain 'registration' %}
+
+{% macro stepClass(flow, index) %}
+    {%- if index == flow.getCurrentStepNumber() -%}
+        {{- ' class="craue_formflow_current_step active"' -}}
+    {%- elseif flow.isStepSkipped(index) -%}
+        {{- ' class="craue_formflow_skipped_step"' -}}
+    {%- elseif flow.isStepDone(index) -%}
+        {{- ' class="craue_formflow_done_step complete"' -}}
+    {%- endif -%}
+{% endmacro %}
+
+{% macro stepLabel(label, flow, index) %}
+    {% set badge = "" %}
+    {%- if index == flow.getCurrentStepNumber() -%}
+        {% set badge = " badge-info" %}
+    {% elseif flow.isStepDone(index) %}
+        {% set badge = " badge-success" %}
+    {% endif %}
+    <span class="badge{{ badge }}">{{ index }}</span>{{- label|trans -}}
+{% endmacro %}

@@ -1,0 +1,3 @@
+ixoil_user_annotation:
+    resource: "@IxoilUserBundle/Controller"
+    type:     annotation

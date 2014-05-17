@@ -1,0 +1,43 @@
+{# app/Resources/views/error.html.twig #}
+{% extends '::Layout/layout.html.twig' %}
+
+{% trans_default_domain 'error' %}
+
+{%  block body %}
+    <section id="content">
+        <div class="row m-n">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="text-center m-b-lg">
+                    {% block body_content %}{% endblock %}
+                </div>
+                <div class="list-group m-b-sm bg-white m-b-lg">
+                    <a href="{{ path('ixoil_index') }}" class="list-group-item">
+                        <i class="fa fa-chevron-right icon-muted"></i>
+                        <i class="fa fa-fw fa-home icon-muted"></i> {{ 'error.page.link.to.homepage'|trans }}
+                    </a>
+                    {% if app.user %}
+                        <a href="{{ path('ixoil_dashboard') }}" class="list-group-item">
+                            <i class="fa fa-chevron-right icon-muted"></i>
+                            <i class="fa fa-fw fa-dashboard icon-muted"></i> {{ 'error.page.link.to.dashboard'|trans }}
+                        </a>
+                    {% endif %}
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-chevron-right icon-muted"></i>
+                        <i class="fa fa-fw fa-question icon-muted"></i> {{ 'error.page.link.to.issues'|trans }}
+                    </a>
+                    <a href="{{ path('ixoil_cms_contact') }}" class="list-group-item">
+                        <i class="fa fa-chevron-right icon-muted"></i>
+                        <i class="fa fa-fw fa-envelope icon-muted"></i> {{ 'error.page.link.to.contact'|trans }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="text-center padder clearfix">
+            <p>
+                <small>{{ 'brand.name'|trans({}, 'app') }} &copy; {{ "now"|date("Y") }}</small>
+            </p>
+        </div>
+    </footer>
+{%  endblock %}

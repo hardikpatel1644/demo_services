@@ -1,0 +1,36 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+{% block field %}
+{% spaceless %}
+    {# Account Activation button #}
+    {% set btnActive = field_description.options.btnactive %}
+    {% include 'IxoilAdminBundle:Admin:link_button.html.twig' with { 'url':btnActive.url,  'text':btnActive.text } %}
+
+    {# Account Rejection Button #}
+    {% set btnReject = field_description.options.btnreject %}
+    <span style="margin-left: 10px">
+        <a href="{{ btnReject.url }}" class="btn" id="rejection_button" >
+            {%- if btnReject.text is defined -%}
+                {{ btnReject.text|trans({}, admin.translationdomain) }}
+            {% endif %}
+        </a>
+    </span>
+
+    {# script to load Rejection Form on Rejection Button click #}
+    <script>
+        $('document').ready(function(){
+            $('#rejection_form').dialog({
+                autoOpen:false,
+                width:530,
+                modal:true,
+                draggable: false
+              }); 
+            $('a#rejection_button').click(function(e){e.preventDefault(); $('#rejection_form').dialog('open');});
+        });
+    </script>
+
+    {# Account Rejection form #}
+    <div id="rejection_form" title="{{ 'rejection_form.title'|trans({}, admin.translationdomain) }} ">
+        {% include 'IxoilAdminBundle:Admin:rejection_form.html.twig' %}
+    </div>
+{% endspaceless %}
+{% endblock %}

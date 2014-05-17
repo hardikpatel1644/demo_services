@@ -1,0 +1,55 @@
+# Ixoil Routing Configuration
+ixoil_cms:
+    resource: "@IxoilCmsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ixoil_user:
+    resource: "@IxoilUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ixoil_stockmarket:
+    resource: "@IxoilStockMarketBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# Shutmi routes
+shtumi_useful:
+    resource: '@ShtumiUsefulBundle/Resources/config/routing.xml'
+    
+# Sonata routes
+sonata_user:
+    resource: "@SonataUserBundle/Resources/config/routing/admin_security.xml"
+    prefix: /admin
+    
+sonata_user_profile:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
+    prefix: /profile
+    
+sonata_user_change_password:    
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
+    prefix: /profile
+
+# Sonata admin routes
+admin:
+    resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+#Fos Bundle routes
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile

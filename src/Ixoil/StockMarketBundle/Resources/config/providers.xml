@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Euro-Dollar provider -->
+        <parameter key="ixoil_stockmarket.provider.eurodollar.class">Ixoil\StockMarketBundle\Provider\EuroDollarProvider</parameter>
+        <parameter key="ixoil_stockmarket.loader.eurodollar.yahoo.class">Ixoil\StockMarketBundle\Provider\EuroDollar\YahooLoader</parameter>
+        <parameter key="ixoil_stockmarket.loader.eurodollar.xe.class">Ixoil\StockMarketBundle\Provider\EuroDollar\XeLoader</parameter>
+
+        <!-- Brent provider -->
+        <parameter key="ixoil_stockmarket.provider.brent.class">Ixoil\StockMarketBundle\Provider\BrentProvider</parameter>
+        <parameter key="ixoil_stockmarket.loader.brent.lesechos.class">Ixoil\StockMarketBundle\Provider\Brent\LesEchosLoader</parameter>
+        <parameter key="ixoil_stockmarket.loader.brent.dailybourse.class">Ixoil\StockMarketBundle\Provider\Brent\DailyBourseLoader</parameter>
+
+        <!-- London Gas Oil provider -->
+        <parameter key="ixoil_stockmarket.provider.lgo.class">Ixoil\StockMarketBundle\Provider\LondonGasOilProvider</parameter>
+        <parameter key="ixoil_stockmarket.loader.lgo.investing.class">Ixoil\StockMarketBundle\Provider\LondonGasOil\InvestingLoader</parameter>
+        <parameter key="ixoil_stockmarket.loader.lgo.marketwatch.class">Ixoil\StockMarketBundle\Provider\LondonGasOil\MarketWatchLoader</parameter>
+    </parameters>
+
+    <services>
+        <!-- Euro-Dollar provider -->
+        <service id="ixoil_stockmarket.provider.eurodollar" class="%ixoil_stockmarket.provider.eurodollar.class%">
+            <tag name="ixoil_stockmarket.provider" alias="eur-usd" />
+        </service>
+        <service id="ixoil_stockmarket.loader.eurodollar.yahoo" class="%ixoil_stockmarket.loader.eurodollar.yahoo.class%">
+            <tag name="ixoil_stockmarket.loader" provider="eur-usd" alias="yahoo" />
+        </service>
+        <service id="ixoil_stockmarket.loader.eurodollar.xe" class="%ixoil_stockmarket.loader.eurodollar.xe.class%">
+            <tag name="ixoil_stockmarket.loader" provider="eur-usd" alias="xe" />
+        </service>
+
+        <!-- Brent provider -->
+        <service id="ixoil_stockmarket.provider.brent" class="%ixoil_stockmarket.provider.brent.class%">
+            <tag name="ixoil_stockmarket.provider" alias="brent" />
+        </service>
+        <service id="ixoil_stockmarket.loader.brent.lesechos" class="%ixoil_stockmarket.loader.brent.lesechos.class%">
+            <tag name="ixoil_stockmarket.loader" provider="brent" alias="lesechos" />
+        </service>
+        <service id="ixoil_stockmarket.loader.brent.dailybourse" class="%ixoil_stockmarket.loader.brent.dailybourse.class%">
+            <tag name="ixoil_stockmarket.loader" provider="brent" alias="dailybourse" />
+        </service>
+
+        <!-- London Gas Oil provider -->
+        <service id="ixoil_stockmarket.provider.lgo" class="%ixoil_stockmarket.provider.lgo.class%">
+            <tag name="ixoil_stockmarket.provider" alias="lgo" />
+        </service>
+        <service id="ixoil_stockmarket.loader.lgo.investing" class="%ixoil_stockmarket.loader.lgo.investing.class%">
+            <tag name="ixoil_stockmarket.loader" provider="lgo" alias="investing" />
+        </service>
+        <service id="ixoil_stockmarket.loader.lgo.marketwatch" class="%ixoil_stockmarket.loader.lgo.marketwatch.class%">
+            <tag name="ixoil_stockmarket.loader" provider="lgo" alias="marketwatch" />
+        </service>
+    </services>
+</container>

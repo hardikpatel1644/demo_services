@@ -1,0 +1,15 @@
+{% extends '::aside.html.twig' %}
+
+{% trans_default_domain 'user' %}
+
+{% block body_content %}
+    <section class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    {{ 'resetting.check_email.message'|trans({ '%email%': email }) }}
+                </div>        
+            </div>
+        </div>
+    </section>
+{% endblock %}

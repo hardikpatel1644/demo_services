@@ -1,0 +1,31 @@
+user:
+    labels:
+        username: Username
+        email: E-Mail
+        firstname: First Name
+        lastname: Last Name
+        company_name: Company Name
+        enabled: Enabled
+        locked: locked
+        created_at: Created At
+        action: Action
+        phone: Phone
+    heading:
+        general: Genearal
+        profile: Profile
+        company_info: Company Info
+
+company:
+    owner: Owner
+    name: Name
+    number: Company Number
+    address:
+        street: Street
+        fax: Fax
+        country: Country
+        city: City
+        zip_code: Zip code
+
+filter:
+    label_account_name: Company name
+    label_account_company_number: Company number

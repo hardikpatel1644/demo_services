@@ -1,0 +1,4 @@
+jvectormap:
+    select_all_regions: 'Select all'
+    clear_all_regions: 'Unselect all'
+  

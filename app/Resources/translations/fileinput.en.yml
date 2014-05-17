@@ -1,0 +1,4 @@
+fileinput:
+    change: 'Change'
+    remove: 'Remove'
+    select: 'Select file'

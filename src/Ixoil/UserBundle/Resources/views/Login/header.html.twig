@@ -1,0 +1,38 @@
+{% trans_default_domain 'user' %}
+
+<section class="dropdown-menu aside-xl animated fadeInUp">
+    <section class="panel bg-white">
+        {% if error %}
+            <div class="alert alert-danger alert-error">{{ error|trans({}, 'FOSUserBundle') }}</div>
+        {% endif %}
+
+        <form action="{{ path("fos_user_security_check") }}" method="post" role="form" class="wrapper">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+            <div class="form-group">
+                <label for="signin-login"> {{ 'login.form.username'|trans }} </label>
+                <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" />
+            </div>
+
+            <div class="form-group">
+                <label for="signin-password">{{ 'login.form.password'|trans }}</label>
+                <input type="password" class="form-control" id="password" name="_password" required="required" />
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                    {{ 'login.form.rememberme'|trans }}
+                </label>
+            </div>
+
+            <small>
+                <a href="{{ path('fos_user_resetting_request') }}" class="pull-right m-t-xs">
+                    {{ 'login.form.forgotten.password'|trans }}
+                </a>
+            </small>
+
+            <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="{{ 'login.form.submit'|trans }}"/>
+          </form>
+    </section>
+</section>

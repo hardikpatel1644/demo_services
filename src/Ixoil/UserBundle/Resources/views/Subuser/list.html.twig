@@ -1,0 +1,78 @@
+{% extends '::restricted.html.twig' %}
+
+{% trans_default_domain "subuser" %}
+
+    {# Added datatable css. #}
+    {% block stylesheets %}
+        {{ parent() }}
+        {% stylesheets
+            '@theme_datatables_css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+
+    {# Body content #}
+    {% block body_content %}
+        
+        <div class="padder-v">
+        <section class="panel panel-default">
+            <header class="panel-heading font-bold">
+                <div class="h4 m-t-none m-b-xs">
+                    <i class="fa fa-users"></i> {{ 'subuser.users_list'|trans }}
+                </div>
+            </header>
+            <div class="table-responsive">
+                {# Datatable config #}
+                {{ 
+                    datatable({ 
+                        'id' : 'subuser_datatable',
+                        'edit_route' : 'ixoil_user_subuser_edit',
+                        'delete_route' : 'ixoil_user_subuser_delete',
+                        'datatable_html': '1',
+                        'datatable_js': '0',
+                        'main_template' : 'IxoilCoreBundle:Datatables:_datatable.html.twig',
+                        'js' : {
+                            'sAjaxSource' : path('ixoil_user_subuser_grid'),
+                        }
+                    })
+                }}
+            </div>
+        </section>
+        </div>
+
+        {# html content for confirm box popup #}
+        {% block confirm_block %}
+            {% include 'IxoilCoreBundle:Common:confirm_box.html.twig' %}
+        {%endblock %}
+
+    {% endblock %}
+
+    {# Added datatable js from theme. #}
+    {% block javascripts %}
+
+        {{ parent() }}
+        <script type="text/javascript" src="{{ asset('bundles/alidatatable/js/jquery.datatable.inc.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/ixoilcore/js/common.js') }}"></script>
+
+        {% javascripts
+            '@theme_datatables_js'
+        %}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+        {% endjavascripts %}
+
+        {{ 
+            datatable({ 
+                'id' : 'subuser_datatable',
+                'edit_route' : 'ixoil_user_subuser_edit',
+                'delete_route' : 'ixoil_user_subuser_delete',
+                'datatable_html': '0',
+                'datatable_js': '1',
+                'main_template' : 'IxoilCoreBundle:Datatables:_datatable.html.twig', 
+                'js' : {
+                    'sAjaxSource' : path('ixoil_user_subuser_grid'),
+                }
+            })
+        }}
+
+    {% endblock %}

@@ -1,0 +1,4 @@
+emailavailable:
+    already:
+        in:
+            use: 'Email address already in use.'

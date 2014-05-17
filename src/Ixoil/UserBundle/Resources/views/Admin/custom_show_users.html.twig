@@ -1,0 +1,35 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+
+{% trans_default_domain 'admin' %}
+
+{% block field%}
+    <ul class="sonata-ba-show-one-to-many">
+        
+        <tr>
+            <th>{{ 'user.labels.username'|trans }}</th>
+            <th>{{ 'user.labels.firstname'|trans }}</th>
+            <th>{{ 'user.labels.lastname'|trans }}</th>
+        </tr>
+        
+    {% if field_description.hasassociationadmin and field_description.associationadmin.isGranted('EDIT') and field_description.associationadmin.hasRoute('edit') %}
+        
+        {% for element in value%}
+            <tr>
+                <td><a href="{{ field_description.associationadmin.generateObjectUrl(field_description.options.route.name, element, field_description.options.route.parameters) }}">{{ element|render_relation_element(field_description) }}</a> </td>
+                <td>{{ element.firstname|render_relation_element(field_description) }}</td>
+                <td>{{ element.lastname|render_relation_element(field_description) }}</td>
+            </tr>
+        {% endfor %}
+            
+    {% else %}
+            
+        {% for element in value%}
+            <tr>
+                 <td>{{ element|render_relation_element(field_description) }}</td>
+                 <td>{{ element.firstname|render_relation_element(field_description) }}</td>
+                 <td>{{ element.lastname|render_relation_element(field_description) }}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+    </ul>
+{% endblock %}

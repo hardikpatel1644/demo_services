@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<orm-designer version="2.3.3.860" mvc="Symfony2" orm="Doctrine2">
+  <module name="Ixoil\StockMarketBundle" import-format="Doctrine2Php" import-path="../../Entity" uuid="ac0f1afe-cc69-4892-8b5d-33ce4fe62ca6">
+    <entity name="StockValue" uuid="8448fd69-c937-44c6-a33f-111a483b567e">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="5ccfa608-2ca5-4ad1-a045-fcbb28b26488"/>
+      <field name="value" type="float" required="true" uuid="84ec1036-5654-4405-ab17-f70d9f82c97c"/>
+      <field name="publication" description="All dates are stored in UTC 0 Timezone" type="datetime" required="true" uuid="d4ead1a1-a687-41c6-a523-c32669b1aac6"/>
+      <field name="symbol" description="The stock symbol" type="string" required="true" uuid="eeee6b9c-3aed-45ae-aa53-f01704b84825"/>
+      <field name="provider" description="The stock provider." type="string" required="true" uuid="0070d558-27d1-4549-bf08-d9d6cf94f12b"/>
+      <field name="loader" description="The information loader." type="string" required="true" uuid="73d6bfb7-7137-4895-84d4-73ce2004f911"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_stockmarket_stockvalue</attribute>
+        <attribute name="repository-class">Ixoil\StockMarketBundle\Repository\StockValueRepository</attribute>
+      </orm-attributes>
+    </entity>
+    <orm-attributes>
+      <attribute name="namespace">Ixoil\StockMarketBundle\Entity</attribute>
+      <attribute name="file-suffix">without-suffix</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <entity uuid="8448fd69-c937-44c6-a33f-111a483b567e" position-x="50" position-y="50" size-x="0" size-x2="110" size-y="0" size-y2="87"/>
+    <module uuid="ac0f1afe-cc69-4892-8b5d-33ce4fe62ca6" bk-color="4294638066" position-x="50" position-y="399" size-x="0" size-x2="250" size-y="-1" size-y2="250"/>
+  </visual-data>
+</orm-designer>

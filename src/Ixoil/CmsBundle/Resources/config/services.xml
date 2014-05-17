@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    
+    <parameters>
+        <!-- Contact -->
+        <parameter key="ixoil_cms.contact.form.type.class">Ixoil\CmsBundle\Form\Type\ContactType</parameter>
+        <parameter key="ixoil_cms.contact.form.handler.class">Ixoil\CmsBundle\Form\Handler\ContactHandler</parameter>
+        <parameter key="ixoil_cms.contact.form.model.class">Ixoil\CmsBundle\Form\Model\Contact</parameter>
+    </parameters>
+
+    <services>
+        <!-- Contact -->
+        <service id="ixoil_cms.contact.form" class="Symfony\Component\Form\Form" factory-method="create" factory-service="form.factory">
+            <argument type="service" id="ixoil_cms.contact.form.type" />
+        </service>
+        <service id="ixoil_cms.contact.form.type" class="%ixoil_cms.contact.form.type.class%">
+            <tag name="form.type" alias="ixoil_contact" />
+            <argument>%ixoil_cms.contact.form.model.class%</argument>
+        </service>
+        <service id="ixoil_cms.contact.form.handler" class="%ixoil_cms.contact.form.handler.class%"  scope="request">
+            <argument type="service" id="ixoil_cms.contact.form" />
+            <argument type="service" id="request" />
+            <argument type="service" id="templating" />
+            <argument type="service" id="ixoil_email.mailer.twig" />
+            <argument type="service" id="translator" />
+            <argument>%ixoil_cms.contact.default_sender%</argument>
+        </service>
+    </services>
+</container>

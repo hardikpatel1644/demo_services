@@ -1,0 +1,138 @@
+{% extends "::default.html.twig" %}
+
+{% import "IxoilUserBundle:Registration:macros.html.twig" as macros %}
+
+{% trans_default_domain 'registration' %}
+
+{% set modelTransDomain = 'core' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets 
+        '@theme_fuelux_css' 
+        '@theme_jvectormap_css' 
+    %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    
+    <link rel="stylesheet" href="{{ asset('bundles/ixoiljvectormap/css/jvectormap-field.css') }}" type="text/css"></script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+        
+    {% javascripts 
+        '@theme_bootstrap_filestyle_js'
+        '@theme_jvectormap_js' 
+    %}
+        <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+    
+    <script src="{{ asset('bundles/ixoiljvectormap/js/jvectormap-field.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/ixoiluser/js/registration.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block body_content %}
+    <div class="row">
+        {# Wizard panel #}
+        <div class="col-lg-7">
+            <div class="panel panel-default">
+                <div id="form-wizard" class="wizard clearfix">  
+                    {%- if flow.getStepLabels() is not empty -%}
+                        <ul class="craue_formflow_steplist steps">
+                            {% for stepLabel in flow.getStepLabels() %}
+                                <li{{ macros.stepClass(flow, loop.index) }}>
+                                    {{- macros.stepLabel(stepLabel, flow, loop.index) -}}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {%- endif -%}
+                </div>
+
+                <div class="step-content">
+                    <form method="post" {{ form_enctype(formView) }} class="form-horizontal">
+                        <div class="panel-body">
+                            {% if flow.getCurrentStepNumber() < flow.getLastStepNumber() %}
+                                {{ bootstrap_set_style('horizontal') }}
+                                {{ bootstrap_set_widget_col(9) }}
+                                {{ bootstrap_set_label_col(3) }}
+                                {{ form_errors(formView) }}
+                                {{ form_rest(formView) }}
+                            {% else %}
+                                <p>Ixoil Thank you for signing up for a free demo account.</p>
+
+                                <p>
+                                    You have received an activation email, thank you to confirm your email.<br />
+                                    If you have not received after 5 minutes thank you to click the button to send the email.
+                                </p>
+                                <p>Your account will be activated after manual verification.</p>
+                                <p>Thanks.</p>
+                            {% endif %}
+
+                            {% include 'IxoilUserBundle:Registration:buttons.html.twig' %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {# Overview panel #}
+        <div class="col-lg-5">
+            <section class="panel panel-default portlet-item">
+                <header class="panel-heading">Overview</header>
+                <section class="panel-body">
+                    {% set currentStep = flow.getCurrentStepNumber() %}
+                    {% set registrationData = flow.getStorage().get('flow_'~flow.getName()~'_data') %}
+
+                    {% for stepNumber, stepData in registrationData if stepNumber < currentStep %}
+                        {% if not loop.first %}
+                            <div class="line line-dashed line-lg pull-in"></div>
+                        {% endif %}
+
+                        <h4>{{ flow.getStepLabel(stepNumber)|trans }}</h4>
+                        <dl>
+                            {% if stepNumber == 2 %}
+                                <dt>{{ flow.getControlLabel(stepNumber,'bank_statement')|trans }} </dt>
+                                <dd> {{ app.session.get('ixoil_home.registration.files').ixoil_steptwo.bank_statement }} </dd>
+
+                                <dt>{{ flow.getControlLabel(stepNumber,'certificate_of_incorporation')|trans }} </dt>
+                                <dd> {{ app.session.get('ixoil_home.registration.files').ixoil_steptwo.certificate_of_incorporation }} </dd>
+                            {% endif %}
+
+                            {% for fieldName, fieldValue in stepData %}
+                                {% if fieldName != '_token'  %}
+
+                                    {% if flow.getControlType(stepNumber, fieldName) != 'repeated'
+                                       and fieldName != 'purchaser_terms_of_sales'
+                                       and fieldName != 'terms_of_use'
+                                       and fieldName != 'provider_terms_of_sales'
+                                       and fieldName != 'logistician_terms_of_sales'
+                                    %}
+                                        <dt>{{ flow.getControlLabel(stepNumber,fieldName)|trans }} </dt>
+
+                                        {% if fieldValue is iterable %}
+                                            {% if flow.getControlType(stepNumber, fieldName) == 'jvectormap' %}
+                                                <dd>{{ fieldValue.regions|join(', ')  }}</dd>
+                                             {% else %}
+                                                <dd>
+                                                    {%- for value in fieldValue -%}
+                                                        {%- if not loop.first %}, {% endif -%}
+                                                        {{ ('model.' ~ value)|trans({}, modelTransDomain) }}
+                                                    {%- endfor -%}
+                                                </dd>
+                                            {% endif %}
+                                        {% elseif fieldName == 'country' %}
+                                            <dd>{{ fieldValue|country }}</dd>
+                                        {% else %}
+                                            <dd>{{ fieldValue }}</dd>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </dl>
+                    {% endfor %}
+                </section>
+            </section>
+        </div>
+    </div>
+{% endblock %}

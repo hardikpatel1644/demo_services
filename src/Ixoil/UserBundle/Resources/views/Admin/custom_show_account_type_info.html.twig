@@ -1,0 +1,37 @@
+{% extends 'SonataAdminBundle:CRUD:base_show_field.html.twig' %}
+{% trans_default_domain 'admin' %}
+
+{% block field %}
+    {% if  object.accountType == 'purchaser' %}
+        {{ block('purchaser_activities') }}
+    {% elseif object.accountType == 'provider' %}
+        {% for element in object.ProviderAccount.activities %}
+            {{ ('model.' ~ element)|trans({}, 'core') }}<br/>
+        {% endfor %}
+        <tr>
+            <th> {{ 'company.file_tos'|trans }} </th>
+            <td>{{ object.ProviderAccount.getFileTos }} </td>
+        </tr>
+    {% elseif object.accountType == 'logistician' %}
+        {% for element in object.LogisticianAccount.getDeliveryAreas %}
+            {{ element }}<br/>
+        {% endfor %}
+    {% elseif  object.accountType == 'purchaser-logistician' %}
+        {{ block('purchaser_activities') }}
+
+        <tr>
+            <th>{{ 'company.delivery_areas'|trans }}</th>
+            <td>
+                {% for element in object.LogisticianAccount.getDeliveryAreas %}
+                    {{ element }} <br/>
+                {% endfor %}
+            </td>
+        </tr>
+    {% endif %}
+{% endblock %}
+
+{% block purchaser_activities %}
+    {% for element in object.PurchaserAccount.activities %}
+        {{ ('model.' ~ element)|trans({}, 'core') }}<br/>
+    {% endfor %}
+{% endblock %}

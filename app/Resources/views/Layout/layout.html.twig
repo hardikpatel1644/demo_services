@@ -1,0 +1,4 @@
+{# app/Resources/views/Layout/layout.html.twig #}
+
+{# This template just check if the user is authenticated and extends the right template #}
+{% extends app.user ? '::Layout/layout.logged.html.twig' : '::Layout/layout.anonymous.html.twig' %}

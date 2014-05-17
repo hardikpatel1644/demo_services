@@ -1,0 +1,3 @@
+ixoil_cms_annotation:
+    resource: "@IxoilCmsBundle/Controller"
+    type:     annotation

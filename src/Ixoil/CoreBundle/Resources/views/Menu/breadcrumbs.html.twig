@@ -1,0 +1,14 @@
+{% if wo_breadcrumbs()|length %}
+    {% spaceless %}
+        <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
+            {% for b in breadcrumbs %}
+                <li{% if loop.last %} class="active"{% endif %}>
+                    {% if b.url and not loop.last %}<a href="{{ b.url }}"{% if linkRel is defined and linkRel|length %} rel="{{ linkRel }}"{% endif %}>{% endif %}
+                        {%- if loop.first %}<i class="fa fa-home"></i>{% endif %}
+                        {{ b.text|trans(b.translationParameters, translation_domain, locale) -}}
+                    {% if b.url and not loop.last %}</a>{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endif %}

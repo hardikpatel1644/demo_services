@@ -1,0 +1,8 @@
+{# src/Ixoil/CmsBundle/Resources/views/Error/access_denied.html.twig #}
+{% extends '::error.html.twig' %}
+
+{% trans_default_domain 'error' %}
+
+{% block body_content %}
+    <h2>{{ 'error.access_denied.message'|trans }}</h2>
+{% endblock %}

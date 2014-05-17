@@ -1,0 +1,27 @@
+shtumi_useful:
+    autocomplete_entities:
+        users_email:
+            class: IxoilUserBundle:User
+            property: email
+            search: contains
+        users_name:
+            class: IxoilUserBundle:User
+            property: username
+            search: contains
+        users_first_name:
+            class: IxoilUserBundle:User
+            property: firstname
+            search: contains
+        users_last_name:
+            class: IxoilUserBundle:User
+            property: lastname
+            search: contains
+
+        users_company_name:
+            class: IxoilUserBundle:Account
+            property: name
+            search: contains
+        users_company_number:
+            class: IxoilUserBundle:Account
+            property: company_number
+            search: contains

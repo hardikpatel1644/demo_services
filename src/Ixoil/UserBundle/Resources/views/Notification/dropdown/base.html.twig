@@ -1,0 +1,31 @@
+{% set block_type = "div" %}
+{% set block_attributes = "" %}
+
+{% if url is defined and url is not empty %}
+    {% set block_type = "a" %}
+    {% set block_attributes = 'href="' ~ url ~ '"' %}
+{% endif %}
+
+{% if icon is not defined %}{% set icon = "" %}{% endif %}
+{% if icon_state is not defined %}{% set icon_state = "success" %}{% endif %}
+
+<{{ block_type }} {{ block_attributes }} class="media list-group-item">
+    {%- block icon -%}
+        {% if icon is not empty %}
+            <span class="pull-left thumb-sm text-center">
+                <i class="fa fa-{{ icon }} fa-2x text-{{ icon_state }}"></i>
+            </span>
+        {% endif %}
+    {%- endblock -%}
+
+    <span class="media-body block m-b-none {% block span_classes %}{% endblock %}" {% block span_attributes %}{% endblock %}>
+        {%- block content -%}
+            {{ ('message.' ~ notification.code)|trans({}, 'notification') }}
+        {%- endblock -%}
+        {%- block date -%}
+            <div>
+                <small class="text-muted">{{ notification.createdAt|datediff('now') }}</small>
+            </div>
+        {%- endblock -%}
+    </span>
+</{{ block_type }}>

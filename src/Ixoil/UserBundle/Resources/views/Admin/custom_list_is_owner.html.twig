@@ -1,0 +1,9 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    {% for element in object.users %}
+        {% if element.getIsOwner == '1' %}
+            <a href="{{ field_description.associationadmin.generateObjectUrl(field_description.options.route.name, element, field_description.options.route.parameters) }}" > {{ element.username }}</a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

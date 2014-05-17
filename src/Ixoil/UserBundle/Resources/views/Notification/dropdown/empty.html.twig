@@ -1,0 +1,9 @@
+{% extends 'IxoilUserBundle:Notification:dropdown/base.html.twig' %}
+
+{% block span_classes %}text-muted text-center{% endblock %}
+
+{% block content %}
+    {{- 'header.notifications.dropdown.empty'|trans({}, 'app') -}}
+{% endblock %}
+
+{% block date %}{% endblock %}

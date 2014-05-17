@@ -1,0 +1,17 @@
+{% extends "IxoilEmailBundle::mail.layout.html.twig" %}
+{% block content %}
+<ul>
+{% for reason in mail_content.reasons %}
+    <li>{{ reason }}</li>
+{% endfor %}
+
+{% if mail_content.reason2 is defined %}
+    <li> {{ mail_content.reason2 }} </li>
+    <ol>
+    {% for invalid_field in mail_content.invalid_fields %}
+        <li>{{ invalid_field }}</li>
+    {% endfor %}
+    </ol>
+{% endif %}
+</ul>
+{% endblock%}

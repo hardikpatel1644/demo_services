@@ -1,0 +1,5 @@
+<a href="{{ url}}" class="btn" {% if target is defined %} target="{{ target }}" {% endif %}>
+    {%- if text is defined -%}
+        {{ text|trans({}, admin.translationdomain) }}
+    {%- endif -%}
+</a>

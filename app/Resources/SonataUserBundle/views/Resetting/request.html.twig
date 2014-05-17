@@ -1,0 +1,26 @@
+{% extends '::aside.html.twig' %}
+
+{% import ':Common:macros.html.twig' as macros %}
+
+{% trans_default_domain 'user' %}
+
+{% block body_content %}
+    <section class="panel panel-default bg-white m-t-lg"> 
+        <header class="panel-heading text-center">
+            <strong>{{ 'resetting.request.heading'|trans }}</strong> 
+        </header> 
+            
+        {% if invalid_username is defined %}
+            {{ macros.message('danger', 'resetting.request.error.invalid_username'|trans({ '%username%': invalid_username })) }}
+        {% endif %}
+
+        <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="panel-body wrapper-lg">
+            <div class="form-group">
+                <label class="control-label">{{ 'resetting.request.username'|trans }}</label>
+                <input type="text" id="username" name="username" class="form-control input-md" required="required" />
+            </div>
+
+            <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-primary" />
+        </form>
+    </section> 
+{% endblock %}

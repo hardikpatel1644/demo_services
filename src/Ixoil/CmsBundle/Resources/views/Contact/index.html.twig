@@ -1,0 +1,28 @@
+{# src/Ixoil/CmsBundle/Resources/views/Contact/index.html.twig #}
+{% extends '::page.html.twig' %}
+
+{% trans_default_domain 'cms' %}
+
+{% block body_content %}
+    <div class="row">
+        <div class="col-md-8">
+            <header class="text-center">
+                <h3>{{ 'contact.form.title'|trans }}</h3>
+            </header>
+            {{ form(form, { 'style': 'horizontal' }) }}
+        </div>
+        <div class="col-md-4">
+            <header class="text-center">
+                <h3>{{ 'contact.address.title'|trans }}</h3>
+            </header>
+            <address>
+                <strong>Ixoil Company</strong><br />
+                795 Folsom Ave, Suite 600<br />
+                San Francisco, CA 94107<br />
+                <abbr>P:</abbr> (123) 456-7890<br />
+                <a href="mailto:#">contact@ixoil.com</a>
+            </address>
+        </div>
+    </div>
+{% endblock %}
+

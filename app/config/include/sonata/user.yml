@@ -1,0 +1,40 @@
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    FOSUserBundle: ~
+                    SonataUserBundle: ~
+sonata_user:
+    admin:
+        user:
+            class: Ixoil\UserBundle\Admin\UserAdmin
+    security_acl:             false
+    table:
+        user_group:           ixoil_user_user_group
+
+    class:
+        user:         Ixoil\UserBundle\Entity\User
+        group:        Ixoil\UserBundle\Entity\Group
+
+#    impersonating:
+#        route:                page_slug
+#        parameters:           { path: / }
+
+    manager_type:             orm
+
+    profile:
+        form:
+            type:                 sonata_user_profile
+            handler:              sonata.user.profile.form.handler.default
+            name:                 sonata_user_profile_form
+            validation_groups:
+                # Defaults:
+                - Profile
+                - Default
+
+#parameters:
+#    sonata.user.admin.user.entity:  Ixoil\UserBundle\Entity\User
+#    sonata.user.admin.group.entity: Ixoil\UserBundle\Entity\Group

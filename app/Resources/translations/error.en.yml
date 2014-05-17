@@ -1,0 +1,9 @@
+error:
+    page:
+        message: 'The server returned a "%code% %text%" error.'
+        link:
+            to:
+                homepage: "Goto homepage"
+                dashboard: "Goto dashboard"
+                issues: "Submit an issue"
+                contact: "Contact us"

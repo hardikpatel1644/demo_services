@@ -1,0 +1,32 @@
+{% trans_default_domain 'registration' %}
+
+{% set renderBackButton = flow.getCurrentStepNumber() in (flow.getFirstStepNumber() + 1) .. flow.getLastStepNumber() %}
+<div class="craue_formflow_buttons craue_formflow_button_count_{% if renderBackButton %}3{% else %}2{% endif %}">
+	{#
+		Default button (the one trigged by pressing the enter/return key) must be defined first.
+		Thus, all buttons are defined in reverse order and will be reversed again via CSS.
+		See http://stackoverflow.com/questions/1963245/multiple-submit-buttons-specifying-default-button
+	#}
+    {%- if flow.getCurrentStepNumber() < flow.getLastStepNumber() -%}
+        <button type="submit" class="craue_formflow_button_last btn btn-s-md btn-primary pull-right">
+            <i class="fa fa-arrow-circle-o-right"></i> {{ 'button.step'|trans }} {{ flow.getStepLabel (flow.getCurrentStepNumber() + 1)|trans }}
+        </button>
+
+        {% if renderBackButton %}
+            {# see http://www.html5rocks.com/en/tutorials/forms/html5forms/ #}
+            <button type="submit" name="{{ flow.getFormTransitionKey() }}" value="back" formnovalidate="formnovalidate" class="btn btn-s-md btn-default pull-left">
+                <i class="fa fa-arrow-circle-o-left"></i> {{ 'button.back'|trans}} {{ flow.getStepLabel(flow.getCurrentStepNumber() - 1)|trans }}
+            </button>
+        {% endif %}
+    {%- else -%}
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-s-md btn-default pull-right">
+            <i class="fa fa-sign-in"></i> {{ 'button.login'|trans }}
+        </a>
+        
+        <a id="resendmail" data-url="{{ url('ixoil_registration_resendconfirmationmail') }}" href="#" class="btn btn-s-md btn-default pull-left">
+            <i class="fa fa-refresh"></i> {{ 'button.resend'|trans}}
+        </a>
+    {%- endif -%}
+
+
+</div>

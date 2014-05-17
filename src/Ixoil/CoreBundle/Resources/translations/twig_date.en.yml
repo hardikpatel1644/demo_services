@@ -1,0 +1,10 @@
+format:
+    and: "%value1% and %value2"
+    period: "{1} %date% ago|{0} in %date%"
+    level:
+        y: "[0,1] %value% year|]1,Inf] %value% years"
+        m: "[0,1] %value% month|]1,Inf] %value% months"
+        d: "[0,1] %value% day|]1,Inf] %value% days"
+        h: "[0,1] %value% hour|]1,Inf] %value% hours"
+        i: "[0,1] %value% minute|]1,Inf] %value% minutes"
+        s: "[0,1] %value% second|]1,Inf] %value% seconds"

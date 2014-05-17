@@ -1,0 +1,10 @@
+<section class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Profile, {{ app.user.firstname }} {{ app.user.lastname }} </h2>
+                {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+            </div>        
+        </div>
+    </div>
+</section>

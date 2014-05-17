@@ -1,0 +1,55 @@
+# cache, logs, etc
+app/bootstrap*
+app/cache/*
+app/logs/*
+app/Application/
+
+# vendors
+vendor/
+components/
+
+# upload directory
+# data/*
+
+# assets
+web/bundles/
+web/min/
+web/css/
+web/js/
+
+# environment sensitive
+app/config/parameters.yml
+# see app/config/parameters.dist
+web/.htaccess
+# see web/.htaccess.dist
+
+# bin
+bin/doctrine.bat
+bin/
+
+# OS garbage, Editors, IDEs, etc
+.DS_Store
+.svn
+code_coverage
+*~
+*.swp
+coverage
+.coverage
+nbproject
+.nbproject
+build
+.build
+.settings
+.settings/.*
+.project
+project
+*.project
+.buildpath
+*.db
+*.tmproj
+*.sublime-project
+*.sublime-workspace
+.idea
+*.idea/*
+web/fonts/
+web/uploads/

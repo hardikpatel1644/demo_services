@@ -1,0 +1,9 @@
+dashboard:
+    message:
+        sent: "Your message has been successfully sent."
+        error:
+            company_inactive: "You are not authorized to login"
+    subtitle: Welcome %firstname% %lastname%
+    subscription:
+        expiration: "Expire on %date%"
+        none: "No active subscription"

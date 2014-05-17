@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<orm-designer version="2.3.3.860" mvc="Symfony2" orm="Doctrine2">
+  <module name="Ixoil\PurchaserBundle" import-format="Doctrine2Php" import-path="../../Entity" uuid="6062cbaf-3d3b-4204-ac6a-ef506b79e61b">
+    <entity name="Agency" uuid="07be3c52-44d8-457c-8212-eb9f784a4f5d">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="67851d14-db25-4bb6-b849-02ec97eedb0f"/>
+      <field name="account_id" type="integer" required="true" uuid="a7542a43-3816-481f-b275-ec0aadc884e9"/>
+      <field name="name" type="string" size="255" required="true" uuid="10fc5148-cad0-4095-a6d4-fc2a354973e3"/>
+      <field name="annual_volume" description="In m3" type="integer" required="true" uuid="170daaa1-9174-41e2-9aba-c2b41411aa1a"/>
+      <field name="delivery_type" type="string" size="255" enum-values="'delivered','taken'" required="true" uuid="dbe2a811-ee76-4d5b-b7fd-7219de9d8e27"/>
+      <field name="delivery_contact" description="Delivery contact name" type="string" size="255" required="true" uuid="9ced9281-69af-4deb-8a14-ea1eee1949d7"/>
+      <field name="file_tipp" description="Path to agency tipp file" type="string" size="255" required="true" uuid="c31f3d31-5140-433a-8598-25e876c6dfbf"/>
+      <field name="agency_address_id" type="integer" required="true" unique="true" uuid="69ee9adf-58af-4ee9-b9a3-63909dffa277"/>
+      <field name="delivery_address_id" type="integer" required="true" unique="true" uuid="e6788ce5-39f1-4ae9-a524-aeb725f4881c"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_purchaser_agency</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="Agency" to="Address" caption="Agency Address" inverse-alias="address" uuid="fb8a11af-ccea-4ff3-9bff-875905a7d624">
+      <association-field from="agency_address_id" to="id"/>
+    </association>
+    <association from="Agency" to="Address" caption="Delivery Address" inverse-alias="deliveryAddress" uuid="66c2ecc5-64da-4782-82c8-9e4eed5929ea">
+      <association-field from="delivery_address_id" to="id"/>
+    </association>
+    <association from="Agency" to="PurchaserAccount" owner-alias="agencies" inverse-alias="purchaserAccount" uuid="c4437c68-cdfa-4e7d-80f0-ddedfc7396b2">
+      <association-field from="account_id" to="account_id"/>
+    </association>
+    <entity name="GroupAgency" description="Virtual agency, handle directly by the main company." uuid="f204cb8e-21c1-4168-8846-fd75455fc30e">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="b5861089-07fe-4dde-947c-ab5449d5c475"/>
+      <field name="agency_id" type="integer" required="true" uuid="36291191-8120-48ed-b167-a6ea8428a1cd"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_purchaser_agency_group</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="GroupAgency" to="Agency" caption="Group Details" owner-alias="groupAgencies" inverse-alias="agency" uuid="7f21f566-344d-42a2-88e5-846078b62626">
+      <association-field from="agency_id" to="id"/>
+    </association>
+    <entity name="SelfAgency" description="Autonomous and physicial agency." uuid="b0b14c98-03f1-4f94-9610-d719c8fbbd9a">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="9cfb5918-3a3e-454d-8352-7841d3fa71e9"/>
+      <field name="agency_id" type="integer" required="true" uuid="3738cb8c-07f1-4933-8fd9-5ecb157d1c09"/>
+      <field name="company_number" type="string" size="100" required="true" uuid="7f48d237-e51b-40d4-a25a-2de155a64185"/>
+      <field name="vat_number" type="string" size="100" required="true" uuid="b8eb55c5-0d55-4387-90cc-287260e17d92"/>
+      <field name="file_bank_statement" type="string" size="255" required="true" uuid="705b6434-5395-46f2-a62d-ca8611832227"/>
+      <field name="file_certificate_incorporation" type="string" size="255" required="true" uuid="ee3b941a-b5c6-4eec-8e9b-034847e86cf4"/>
+      <field name="agency_billing_id" type="integer" required="true" uuid="51242540-cffb-431c-81c0-88186a85c49d"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_purchaser_agency_self</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="SelfAgency" to="Agency" caption="Self Details" owner-alias="selfAgencies" inverse-alias="agency" uuid="f85ae622-cfac-49a4-a716-ec2103c48f9d">
+      <association-field from="agency_id" to="id"/>
+    </association>
+    <association from="SelfAgency" to="AgencyBilling" caption="Billing Details" inverse-alias="billingDetails" uuid="4a2f3dcd-42f3-46a8-8f51-c86b4b095e83">
+      <association-field from="agency_billing_id" to="id"/>
+    </association>
+    <entity name="Tank" uuid="b4128b94-833b-453f-87e6-67f28f9162ec">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="caea28fd-f9b3-4384-8bfd-1ddd84f27c77"/>
+      <field name="agency_id" type="integer" required="true" uuid="81ca733b-7179-4b40-b645-4391599b70e8"/>
+      <field name="name" type="string" size="255" required="true" uuid="9ee738e0-920f-4970-9b01-c40ef357c4a0"/>
+      <field name="total_capacity" description="In m3" type="integer" required="true" uuid="0f7fe6ba-a9b3-4e16-a9a9-b5e16184092a"/>
+      <field name="current_level" description="In m3" type="integer" required="true" uuid="cab263ba-f343-4880-89b6-2f62d9ea36eb"/>
+      <field name="oil_type" type="string" enum-values="'gazoil','gazoil+','gnr-winter','gnr-summer','gnr+','fod','sp95','sp98','e10'" required="true" uuid="f5d49d6d-b38a-4c19-af25-cb6db17c4ab1"/>
+      <field name="empty_alert" type="boolean" default="0" required="true" uuid="c8d7867b-8cc1-44d4-8a8b-37520fff1fa2"/>
+      <field name="empty_alert_level" description="In m3" type="integer" uuid="72bb3ed4-83b9-4674-8569-96cfa31eb8f2"/>
+      <field name="auto_level_update" type="boolean" default="0" required="true" uuid="56d6ac4a-f6f9-4d3d-b4b5-0f49224d63e1"/>
+      <field name="storage_type" type="string" enum-values="'underground','aerial'" required="true" uuid="7d3196c9-c825-4aea-aed3-e77a7f7346da"/>
+      <field name="average_daily_consumption" description="In m3. Result of a dynamic calcul." type="decimal" required="true" uuid="30ddcd51-834a-46af-94db-ab9a5335f009"/>
+      <field name="average_delivery_frequence" description="In delivery/week. Result of a dynamic calcul." type="decimal" required="true" uuid="470bb9c3-140c-4660-8c8a-e1d1369eef7a"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_purchaser_tank</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="Tank" to="Agency" caption="Agency Tank" owner-alias="tanks" inverse-alias="agency" uuid="af6acfe9-e0a2-45b2-be1c-d99092c8eea1">
+      <association-field from="agency_id" to="id"/>
+    </association>
+    <entity name="AgencyBilling" uuid="6bbc15a1-64ed-471d-85a9-fa13c1c672d2">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="5c515af9-5a00-439a-8d44-f1ee12a03553"/>
+      <field name="address_id" type="integer" required="true" uuid="ca18c878-65f2-485c-8f8f-3a5f5319ceb1"/>
+      <field name="preferred_payment" type="string" size="255" required="true" uuid="3a33137b-cf73-4a3a-8e84-70c1afd4bf68"/>
+      <field name="preferred_terms" type="array" required="true" uuid="0b079f97-3663-4906-8fc7-11809697b01d"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_purchaser_agency_billing</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="AgencyBilling" to="Address" caption="Billing Address" inverse-alias="address" uuid="66f7121e-83cd-4ed3-94ab-7e6b7ca31f2a">
+      <association-field from="address_id" to="id"/>
+    </association>
+    <entity name="UserToAgency" uuid="727ebf0a-832e-421c-bebc-e7a1c0868a3d">
+      <field name="user_id" type="integer" required="true" primary="true" uuid="c37033eb-ccbc-4f35-a898-c27efa0e056b"/>
+      <field name="agency_id" type="integer" required="true" primary="true" uuid="bbb67627-19f8-455f-a5af-629edde7ef14"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_purchaser_user2agency</attribute>
+      </orm-attributes>
+    </entity>
+    <many-to-many mn-entity="UserToAgency" caption="User to Purchaser Agency" uuid="e6f7da65-8c45-4f66-be2e-6b84e66c63f0">
+      <many-to-many-entity name="Agency" owning-side="true" uuid="27fa767b-e3be-4fc3-afde-66914a2cd282">
+        <many-to-many-field from="agency_id" to="id"/>
+      </many-to-many-entity>
+      <many-to-many-entity name="User" owning-side="false" alias="users" uuid="8d02da4e-7b0b-4fff-88b4-0d23995ca06b">
+        <many-to-many-field from="user_id" to="id"/>
+      </many-to-many-entity>
+    </many-to-many>
+    <entity name="ProviderRelation" uuid="a4e015b8-adb6-44be-b508-2b3ba5231e30">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="c550fdf0-d944-4bd8-9fd6-e9f594908548"/>
+      <field name="default_outstanding" description="Maximum available outstanding" type="decimal" required="true" uuid="fd641661-3b81-4b59-8e6d-676ebbc3190d"/>
+      <field name="current_outstanding" type="decimal" required="true" uuid="1163b8ae-ae6b-4376-91d9-b5af5dac3ec0"/>
+      <field name="provider_account_id" type="integer" required="true" uuid="6cd51bff-6a21-4e0f-a7af-2046e7f90a2d"/>
+      <field name="purchaser_account_id" type="integer" uuid="71d4e1c5-4d7e-4daa-afba-45607bbc0b8b"/>
+      <field name="self_agency_id" type="integer" uuid="c0cebd10-49ec-4124-bd2b-afe9b28554ea"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_purchaser_provider_relation</attribute>
+      </orm-attributes>
+    </entity>
+    <association from="ProviderRelation" to="SelfAgency" caption="Agency to Provider Relation" owner-alias="purchaserRelations" inverse-alias="agency" uuid="9eef9393-176f-4577-93c1-94e93765f648">
+      <association-field from="self_agency_id" to="id"/>
+    </association>
+    <association from="ProviderRelation" to="PurchaserAccount" caption="Purchaser to Provider Relation" owner-alias="providerRelations" inverse-alias="purchaser" uuid="fa43386f-08a0-4c83-b30e-b7e95e193e31">
+      <association-field from="purchaser_account_id" to="account_id"/>
+    </association>
+    <association from="ProviderRelation" to="ProviderAccount" caption="Provider to Purchaser Relation" inverse-alias="provider" uuid="054ef18a-b8f0-4567-9d78-ea6eb2d43dbd">
+      <association-field from="provider_account_id" to="account_id"/>
+    </association>
+    <orm-attributes>
+      <attribute name="namespace">Ixoil\PurchaserBundle\Entity</attribute>
+      <attribute name="file-suffix">without-suffix</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+    </orm-attributes>
+  </module>
+  <visual-data>
+    <entity uuid="07be3c52-44d8-457c-8212-eb9f784a4f5d" position-x="700" position-y="0" size-x="0" size-x2="140" size-y="0" size-y2="143"/>
+    <many-to-many-association-entity uuid="27fa767b-e3be-4fc3-afde-66914a2cd282" caption1-position-x="-44" caption1-position-y="29" center-position-x="0" center-position-y="0"/>
+    <module uuid="6062cbaf-3d3b-4204-ac6a-ef506b79e61b" bk-color="4294702841" position-x="350" position-y="1050" size-x="0" size-x2="1200" size-y="100" size-y2="400"/>
+    <entity uuid="6bbc15a1-64ed-471d-85a9-fa13c1c672d2" position-x="300" position-y="0" size-x="0" size-x2="151" size-y="0" size-y2="73"/>
+    <entity uuid="727ebf0a-832e-421c-bebc-e7a1c0868a3d" position-x="500" position-y="-50" size-x="0" size-x2="101" size-y="0" size-y2="60"/>
+    <many-to-many-association-entity uuid="8d02da4e-7b0b-4fff-88b4-0d23995ca06b" caption1-position-x="0" caption1-position-y="0" caption2-position-x="37" caption2-position-y="8" center-position-x="0" center-position-y="0" splitted="1"/>
+    <entity uuid="a4e015b8-adb6-44be-b508-2b3ba5231e30" position-x="100" position-y="0" size-x="0" size-x2="148" size-y="0" size-y2="101"/>
+    <entity uuid="b0b14c98-03f1-4f94-9610-d719c8fbbd9a" position-x="463" position-y="250" size-x="0" size-x2="187" size-y="0" size-y2="115"/>
+    <entity uuid="b4128b94-833b-453f-87e6-67f28f9162ec" position-x="950" position-y="-50" size-x="0" size-x2="177" size-y="0" size-y2="185"/>
+    <entity uuid="f204cb8e-21c1-4168-8846-fd75455fc30e" position-x="750" position-y="250" size-x="0" size-x2="101" size-y="0" size-y2="45"/>
+  </visual-data>
+</orm-designer>

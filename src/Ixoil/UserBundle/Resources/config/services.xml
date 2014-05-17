@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Contraint Validator -->
+        <parameter key="ixoil_user.validator.constraints.emailavailable.class">Ixoil\UserBundle\Validator\Constraints\EmailAvailableValidator</parameter>
+
+        <!-- Manager -->
+        <parameter key="ixoil_user.manager.notification.class">Ixoil\UserBundle\Manager\NotificationManager</parameter>
+        <parameter key="ixoil_user.manager.user.class">Ixoil\UserBundle\Manager\UserManager</parameter>
+        <parameter key="ixoil_user.manager.account.class">Ixoil\UserBundle\Manager\AccountManager</parameter>
+        
+        <!-- Event Listener -->
+        <parameter key="ixoil_user.listener.login.class">Ixoil\UserBundle\EventListener\InteractiveLoginListener</parameter>
+        
+        <!-- Twig extensions -->
+        <parameter key="ixoil_user.twig.extension.notification.class">Ixoil\UserBundle\Twig\Extension\NotificationExtension</parameter>
+    </parameters>
+    
+    <services>
+        <!-- Contstraint Validator -->
+        <service id="ixoil_user.validator.constraints.emailavailable" class="%ixoil_user.validator.constraints.emailavailable.class%">
+            <tag name="validator.constraint_validator" alias="ixoil_user.emailavailable" />
+            
+            <argument type="service" id="ixoil_user.manager.user" />
+        </service>
+        
+        <!-- Manager -->
+        <service id="ixoil_user.manager.user" class="%ixoil_user.manager.user.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="fos_user.util.email_canonicalizer"/>
+            <argument type="service" id="validator"/>
+        </service>
+        <service id="ixoil_user.manager.notification" class="%ixoil_user.manager.notification.class%" >
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+        <service id="ixoil_user.manager.account" class="%ixoil_user.manager.account.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="security.context" />
+        </service>
+        
+        <!-- Event Listener -->
+        <service id="ixoil_user.listener.login" class="%ixoil_user.listener.login.class%">
+            <tag name="kernel.event_listener" event="security.interactive_login" method="onLogin" />  
+            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
+            
+            <argument type="service" id="ixoil_user.manager.account" />
+            <argument type="service" id="service_container" />
+        </service>
+        
+        <!-- Twig extensions -->
+        <service id="ixoil_user.twig.extension.notification" class="%ixoil_user.twig.extension.notification.class%">
+            <tag name="twig.extension" />
+
+            <argument type="service" id="security.context" />
+            <argument type="service" id="ixoil_user.manager.notification" />
+        </service>
+    </services>
+</container>

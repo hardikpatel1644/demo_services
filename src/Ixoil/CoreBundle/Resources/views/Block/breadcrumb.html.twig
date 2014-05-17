@@ -1,0 +1,12 @@
+{% extends 'knp_menu_ordered.html.twig' %}
+{% block label %}{% if item.uri == '/' %}<i class="fa fa-home"></i> {% endif %}{{ item.label }}{% endblock %}
+
+{#
+    {% block list %}
+        {% spaceless %}
+            <div class="sonata_breadcrumb">
+                {{ parent() }}
+            </div>
+        {% endspaceless %}
+    {% endblock %}
+#}

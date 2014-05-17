@@ -1,0 +1,16 @@
+{% extends "IxoilEmailBundle::mail.layout.html.twig" %}
+{% trans_default_domain "email" %}
+{% block content %}
+{% set user_detail = mail_content.user_detail %}
+<p align="left" style="color:#625454; margin-bottom:10px;">{{ 'email.contact_us.paragraph'|trans }} </p>
+ <div id="box" style="margin-left:10px">
+     {{ 'email.contact_us.name'|trans }}: {{ user_detail.getName() }} <br/>
+     {{ 'email.contact_us.email'|trans }}: {{ user_detail.getEmail() }}<br/>
+     {{ 'email.contact_us.company'|trans }}: {{ user_detail.getCompany() }} <br/>
+     {{ 'email.contact_us.phone'|trans }}: {{ user_detail.getPhone() }}
+     <br/>
+     {{ 'email.contact_us.message'|trans }} :
+     <div>{{ user_detail.getMessage() }}</div>
+ </div>
+ 
+{% endblock %}

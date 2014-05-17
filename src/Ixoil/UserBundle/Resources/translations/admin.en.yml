@@ -1,0 +1,107 @@
+company:
+    owner: Owner
+    name: Company Name
+    number: Company Number
+    vat_number: VAT Number
+    is_locked: Locked
+    users: Users
+    account_type: Account Type
+    bank_statement: Bank Statement
+    view_bank_statement: View Bank Statement
+    certificate_of_incorporation: Certificate of Incorporation
+    view_certificate_of_incorporation: View Certificate of Incorporation
+    account_type_info: Details
+    file_tos: File TOS
+    delivery_areas: Delivery Areas
+    activity: Activities
+    action_label: Action
+    action: 
+        activate : Activate this account for 30 days
+        reject : Reject this account
+    file_bank_statement: File Bank Statement
+    file_certificate_incorporation: File Certificate Incorporation
+    address:
+        street: Street
+        fax: Fax
+        phone: Phone
+        country: Country
+        city: City
+        zip_code: Zip code
+        phone: Phone
+        phone_alt: Alternate Number
+    status:
+        title: Status
+        value:
+            0: Unchecked
+            1: Refused
+            2: Pending
+            3: Accepted
+    heading:
+        general: General
+        address: Address
+        company_user_list: Company Users List
+        details: Details
+        activation: Activation/Subscription
+        action_required: Action Required
+profile:
+    dob: Date of birth
+    website: Website
+    biography: Biography
+    gender: Gender
+    locale: Locale
+    timezone: Timezone
+    phone: Phone
+security:
+    token: Token
+user:
+    labels:
+        username: Username
+        firstname: First Name
+        lastname: Last Name
+breadcrumb:
+    link_account_list: Company
+    link_user_list: User
+    link_subscription_option_list : Subscription Options
+    link_subscription_list: Subscription
+    link_subscription_price_list: Subscription Prices
+rejection_form:  
+    reason1: Documents are not good.
+    reason2: Informations on form are not good.
+    reason3: The company director refused the account creation on ixoil or administrator account does not have permission to engage the company on ixoil.
+    others: Others
+    title: Reject Account
+    ok: OK
+    fields:
+        company_zipcode: Company Zipcode
+        company_phone: Company phone number
+        company_fax: Company fax number
+        company_vat: Company VAT number
+activation_email:
+    subject: Ixoil Account Activated for 30 Days
+    body: Your ixoil account has been activated you can login
+rejection_email:
+    subject: Ixoil Account Rejected
+flash_message:
+    trial_activate: Company Account activated for 30 days successfully.
+    account_rejected: Rejection Notification send to user.
+    
+subscription:
+    title: Subscription
+    prices: Prices
+    price:
+        title: Subscription Price
+        name: Name
+        duration: Duration (in months)
+        value: Price
+    name: Subscription Name
+    account_type: Account Type
+    duration: Duration
+    options: Options
+    option:
+        title: Subscription Option
+        name: Option Name
+        prices: Prices
+        code : Code
+        accounts : Accounts
+        subscription : Subscription
+        account_type : Account Type

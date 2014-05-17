@@ -1,0 +1,21 @@
+brand:
+    name: "Ixoil"
+header:
+    link:
+        toggle: "Toggle menu"
+        signin: "Login"
+        signout: "Logout"
+        admin: "Admin"
+        dashboard: "Dashboard"
+        notification: "Notifications"
+    form:
+        signin:
+            login: "Login"
+            password: "Password"
+            rememberMe: "Keep me logged in"
+            forgotPassword: "Forgot password?"
+            submit: "Signin"
+    notifications:
+        dropdown:
+            header: "{0} You don't have new notifications|{1} You have %count% new notification|[2,Inf] You have %count% new notifications"
+            empty: "No notifications"

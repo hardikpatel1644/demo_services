@@ -1,0 +1,80 @@
+{# app/Resources/views/Layout/layout.base.html.twig #}
+{% extends '::Layout/base.html.twig' %}
+
+{% trans_default_domain 'app' %}
+
+{% block title_content %}
+    {%- set title = ixoil_title({}, 'menu') -%}
+    {{- parent() -}}
+    {%- if title is not empty %} - {{ title|raw }}{% endif -%}
+{% endblock %}
+
+{% block content %}
+    <section class="vbox">
+        <header class="bg-dark dk header navbar navbar-fixed-top-xs">
+            <div class="navbar-header aside-md">
+                {% block header_prebrand %}
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar-collapse">
+                        <span class="sr-only">{{ 'header.link.toggle'|trans }}</span>
+                        <i class="fa fa-bars"></i>
+                    </button>
+                {% endblock %}
+
+                <a data-toggle="fullscreen" class="navbar-brand" href="#">
+                    {#- <img class="m-r-sm" src="images/logo.png" />-#}
+                    {{- 'brand.name'|trans -}}
+                </a>
+
+                {% block header_postbrand %}{% endblock %}
+            </div>
+            {% block header %}
+                <nav class="navbar-collapse collapse" id="header-navbar-collapse">
+                    {% block header_content %}{% endblock %}
+                </nav>
+            {% endblock %}
+        </header>
+        <section>
+            {% block body %}
+                <section class="hbox stretch">
+                    <section id="content">
+                        <section class="vbox">
+                            <section class="scrollable padder">
+                                {% block breadcrumb %}{{ wo_render_breadcrumbs() }}{% endblock %}
+
+                                {% block body_title %}
+                                <div class="m-b-md">
+                                    <h3 class="m-b-none">{{ ixoil_print_title({}, 'menu') }}</h3>
+                                    {%- if ixoil_subtitle({}, 'menu') is not empty %}<small>{{ ixoil_print_subtitle({}, 'menu') }}</small>{% endif %}
+                                </div>
+                                {% endblock %}
+
+                                {%- block messages -%}
+                                    {%- include 'Common/messages.html.twig' -%}
+                                {%- endblock -%}
+
+                                {%- block body_container -%}
+                                    <div class="container">
+                                        <div class="content m-t">
+                                            {%- block body_content -%}{%- endblock -%}
+                                        </div>
+                                    </div>
+                                {%- endblock -%}
+                                
+                                    
+                                {%- block footer -%}
+                                    <footer id="footer">
+                                        {%- block footer_content %}
+                                            <div class="text-center padder clearfix">
+                                                <p><small>{{ 'brand.name'|trans }} &copy; {{ 'now'|date('Y') }}</small></p>
+                                            </div>
+                                        {% endblock -%}
+                                    </footer>
+                                {%- endblock -%}    
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            {% endblock -%}
+        </section>
+    </section>
+{% endblock %}

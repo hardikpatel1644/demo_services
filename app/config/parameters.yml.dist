@@ -1,0 +1,37 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_socket:   ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_port:       ~
+    mailer_auth_mode:  ~
+    mailer_encryption: ~
+    mailer_user:       ~
+    mailer_password:   ~
+    mailer_default_sender: no-reply@ixoil.com
+
+    # Contact email address
+    contact_email: admin@oxindev.com
+
+    # Ixoil Admin email address.
+    admin_email: admin@oxindev.com
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    # Node settings
+    node_assetic:       /user/local/bin/node
+    node_paths_assetic: [/user/local/lib/node, /user/local/lib/node_modules]
+
+    # Sonata admin settings
+    sonata_admin.title: Ixoil Admin    
+    sonata_admin.logo_title: Ixoil Admin
+
+    # 
+    tos_version: 1.0

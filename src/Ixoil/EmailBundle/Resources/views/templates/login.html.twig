@@ -1,0 +1,37 @@
+{% extends "IxoilEmailBundle::mail.layout.html.twig" %}
+{# content block start #}    
+{% block content %}
+    <tr>
+        <td bgcolor="#FFFFFF" colspan="2">
+            <table width="600" cellspacing="0" cellpadding="0" border="0" align="left">
+                <tbody><tr>
+                        <td colspan="3"><img width="10" border="0" height="10" src="{{ asset('bundles/ixoilemail/images/spacer10.png') }}"></td>
+                    </tr>
+                    <tr>
+                        <td width="20"><img width="20" border="0" height="20" src="{{ asset('bundles/ixoilemail/images/spacer20.png') }}"></td>
+                        <td width="560" style="text-align:left">
+
+                            <p align="left"></p><h4 style="font-weight:bold;color:#000000; margin-top:0px;">Bonjour {{ mail_content.name }},</h4><p></p>
+                            <p align="left" style="color:#625454; margin-bottom:10px;">Bienvenue dans l'univers d'IXOIL, la première plateforme de gestion du carburant en vrac. </p>
+                            <p align="left" style="color:#625454; margin-bottom:10px;">Prêt(e) à embarquer avec nous? La <a href="#" style="color:#FA7162" target="_blank">documentation</a> et les <a href="#" style="color:#FA7162" target="_blank">tutoriels vidéos </a> sont là pour vous aider à  parcourir les différents thèmes qui vous permettront de mieux comprendre et  d'utiliser plus efficacement IXOIL PROJECT.</p>
+
+                            <p align="left" style="color:#625454; margin-bottom:10px;">Suivez les liens ci-dessous. L'inscription est nécessaire, mais elle est totalement gratuite
+                                et vous offre 30 jours d'essai.</p>
+                            <ul>
+                                <li><a href="#" style="color:#FA7162" target="_blank">Aperçu d'Ixoil</a></li>
+
+                                <li><a href="#" style="color:#FA7162" target="_blank">Bien gérer ses achats, ventes et transports,</a></li>
+
+                                <li><a href="#" style="color:#FA7162" target="_blank">Tutoriels Vidéos</a></li>
+
+                            </ul>
+                            <p align="left" style="color:#625454; margin-bottom:10px;">Dans les semaines à venir, nous vous adresserons de temps en temps d'autres  e-mails comprenant des liens vers des ressources utiles. Ces liens ont été  sélectionnés pour vous aider à progresser plus rapidement dans l'utilisation de  Bonita BPM et réussir votre entrée dans le monde du BPM. </p>
+
+                            <p align="left" style="color:#625454; margin-bottom:10px;">Et encore, bienvenue parmis nous !            		</p></td>
+                        <td width="20"><img width="20" border="0" height="20" src="{{ asset('bundles/ixoilemail/images/spacer20.png') }}"></td>
+                    </tr>
+                </tbody></table>   
+        </td>
+    </tr>
+{% endblock%}
+{# content block ends #}    

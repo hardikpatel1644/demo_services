@@ -1,0 +1,10 @@
+
+{% trans_default_domain "subuser" %}
+
+{% if enabled == 1 %}
+<span class="label label-success">{{ 'subuser.yes'|trans }} </span>
+{% else %}
+    <span class="label label-danger">{{ 'subuser.no'|trans }} </span>
+{% endif %}
+
+

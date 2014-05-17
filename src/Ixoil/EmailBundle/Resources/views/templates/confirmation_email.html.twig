@@ -1,0 +1,12 @@
+{% extends "IxoilEmailBundle::mail.layout.html.twig" %}
+
+{% trans_default_domain "email" %}
+
+{% block content %}
+
+<p align="left" style="color:#625454; margin-bottom:10px">{{ 'email.confirmation_email.paragraph'|trans }} </p>
+<div style="width: 520px">
+<a href="{{ mail_content.confirmation_url }}" style="color:#FA7162;word-wrap:break-word;" target="_blank">{{ mail_content.confirmation_url }}</a>
+</div>
+
+{% endblock %}

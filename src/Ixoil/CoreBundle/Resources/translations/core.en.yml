@@ -1,0 +1,33 @@
+core:
+    messages:
+        error:
+            invalid_login: You are not authorized to login due to comapny is not active.
+            subscription:
+                renew: Your subscription is over. Please renew your subscription to activate your account.
+            usernot_exists: User doesn't exist or has been deleted !
+        confirm_message: Are you sure you want to delete this user ?
+
+button:
+    title:
+        close: Close
+        delete: Delete
+        
+model:
+    account:
+        status:
+            unchecked: Unchecked
+            refused: Refused
+            pending: Pending
+            accepted: Accepted
+    provider:
+        activity:
+            tanker: Tanker
+            dealer: Dealer
+            merkant: Merkant
+            lms: LMS
+    purchaser:
+        activity:
+            freighttransport: Freight transport
+            passengertransport: Passenger transport
+            servicestation: Service station
+            dealer: Dealer

@@ -1,0 +1,15 @@
+<div class="container aside-xxl">
+    <section class="panel panel-default bg-white m-t-lg"> 
+        <header class="panel-heading text-center">
+            <strong>{{ 'resetting.resetpasswordheading'|trans({}, 'home') }}</strong> 
+        </header>
+            
+        <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="panel-body wrapper-lg">
+            <div class="form-group">
+                {{ form_widget(form) }}
+            </div>
+
+            <input type="submit" value="{{ 'resetting.reset.submit'|trans({}, 'home') }}" class="btn btn-primary" />
+        </form>
+    </section> 
+</div>

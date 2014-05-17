@@ -1,0 +1,28 @@
+subuser:
+    firstname: First Name
+    lastname: Last Name
+    email: Email
+    password: Password
+    repeat_password: Repeat Password
+    phone: Phone
+    enable_user: Enable user
+    enabled: Enabled
+    create: Create
+    email_exist: Email Already in use.
+    invalid_message: 
+        password: The password fields must match.
+    users_list: Users List
+    yes: Yes
+    no: No
+    update: Update
+    delete_user: Delete User
+title:
+    create: Create
+    edit: Edit
+    update_password: Update Password
+    delete: Delete
+flash_message:
+    user_create: User Created successfully.
+    user_delete: User Deleted successfully.
+    user_edit: User Updated successfully.
+    user_updatepassword: User Password Updated successfully.

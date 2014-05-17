@@ -1,0 +1,84 @@
+{# src/Ixoil/CmsBundle/Resources/views/Default/index.html.twig #}
+{%  extends '::default.html.twig' %}
+
+{% trans_default_domain 'cms' %}
+
+{% block breadcrumb %}{% endblock %}
+
+{% block body_title %}{% endblock %}
+
+{% block body_content %}
+    <div class="row m-t-md">
+        <section class="col-md-8">
+            <header class="text-center">
+                <h4>{{ 'index.infos.title'|trans }}</h4>
+            </header>
+            <section class="panel panel-default bg-white">
+                <div class="carousel slide auto panel-body" id="infos-slide">
+                    <ol class="carousel-indicators out">
+                        <li data-target="#c-slide" data-slide-to="0" class="active"></li>
+                        <li data-target="#c-slide" data-slide-to="1" class=""></li>
+                        <li data-target="#c-slide" data-slide-to="2" class=""></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <p class="text-center">
+                                <em class="h4 text-mute">Lorem ipsum</em><br>
+                                <small class="text-muted">Lorem ipsum</small><br />
+                                <img src="http://assets.inhabitat.com/wp-content/blogs.dir/1/files/2010/10/Another-Oil-Explosion-3.jpg" />
+                            </p>
+                        </div>
+                        <div class="item">
+                            <p class="text-center">
+                                <em class="h4 text-mute">Lorem ipsum, lorem ipsum</em><br>
+                                <small class="text-muted">Lorem ipsum</small><br />
+                                <img src="http://www.link2portal.com/sites/default/files/imagecache/lead_image_600/Talisman-north-sea-oil-rig.jpg" />
+                            </p>
+                        </div>
+                        <div class="item">
+                            <p class="text-center">
+                                <em class="h4 text-mute">Lorem ipsum</em><br>
+                                <small class="text-muted">Lorem ipsum, lorem ipsum</small><br />
+                                <img src="http://www.tomeipowered.com/BTE/wp-content/uploads/2011/07/Oil-Filler-Cap_RB26.jpg" />
+                            </p>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#infos-slide" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="right carousel-control" href="#infos-slide" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div>
+            </section>
+        </section>
+
+        <section class="col-md-4">
+            <header class="text-center">
+                <h4>{{ 'index.demo.title'|trans }}</h4>
+            </header>
+            <div class="panel panel-default wrapper-lg bg-white">
+                <div class="form-group">
+                    <a class="btn btn-group-justified btn-primary" href="{{ path('ixoil_registration_type', { 'type':'purchaser'}) }}">
+                        {{ 'index.demo.link.purchaser'|trans }}
+                    </a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-group-justified btn-primary" href="{{ path('ixoil_registration_type', { 'type':'provider'}) }}">
+                        {{ 'index.demo.link.provider'|trans }}
+                    </a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-group-justified btn-primary" href="{{ path('ixoil_registration_type', { 'type':'logistician'}) }}">
+                        {{ 'index.demo.link.logistician'|trans }}
+                    </a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-group-justified btn-primary" href="{{ path('ixoil_registration_type', { 'type':'purchaser-logistician'}) }}">
+                        {{ 'index.demo.link.purchaser-logistician'|trans }}
+                    </a>
+                </div>                                                
+            </div>
+        </section>
+    </div>
+{% endblock %}

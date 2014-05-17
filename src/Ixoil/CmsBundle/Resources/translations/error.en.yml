@@ -1,0 +1,4 @@
+error:
+    access_denied:
+        title: "Access denied"
+        message: "You don't have the required rights to access to this page."

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<orm-designer version="2.3.3.860" name="Ixoil" mvc="Symfony2" orm="Doctrine2" uuid="94cf8b11-4939-49e6-8e5f-d0ac90e6c099">
+  <module name="Ixoil\CoreBundle" import-format="Doctrine2Php" import-path="../../src/Ixoil/CoreBundle/Entity" uuid="79079442-f43f-459d-8844-a613abc9cafc">
+    <entity name="Address" uuid="9a6bb890-78c3-4730-9c1b-9243e6022437">
+      <field name="id" type="integer" required="true" unique="true" primary="true" auto-increment="true" uuid="5b8fcbff-9b74-4840-81d1-ad1b7c361187"/>
+      <field name="street" type="text" required="true" uuid="9b05c1b1-f15a-4d1d-864f-7111b6e2dc44"/>
+      <field name="zip_code" type="string" size="5" required="true" uuid="dbaa2dde-f5e0-479f-97d5-6e7c450f8978"/>
+      <field name="city" type="string" size="100" required="true" uuid="77893228-c5c9-40e3-9986-a6bd8e073127"/>
+      <field name="country" type="string" size="5" required="true" uuid="e6801ff4-ac6b-4d5f-8224-c1803b059e6d"/>
+      <field name="fax" type="string" size="10" required="true" uuid="5bad6a62-c06e-4a4e-8b40-901a0530dbf6"/>
+      <field name="phone" type="string" size="10" required="true" uuid="cc4dee6f-68ff-4d0a-a28e-bc793be7ecdd"/>
+      <field name="phone_alt" type="string" size="10" uuid="ea80395a-83d0-4784-8660-20375eb93a9b"/>
+      <field name="latitude" type="decimal" uuid="5d56ed34-d2e4-4d92-8b09-fee7b764be3d"/>
+      <field name="longitude" type="decimal" uuid="787d762b-48ea-4dfe-b770-4096af943eaf"/>
+      <orm-attributes>
+        <attribute name="table">ixoil_core_address</attribute>
+      </orm-attributes>
+    </entity>
+    <orm-attributes>
+      <attribute name="namespace">Ixoil\CoreBundle\Entity</attribute>
+      <attribute name="file-suffix">without-suffix</attribute>
+      <attribute name="filename-format">entity-name-only</attribute>
+    </orm-attributes>
+  </module>
+  <external-module storage-path="../../src/Ixoil/UserBundle/Resources/orm/ormdesigner.xml"/>
+  <external-module storage-path="../../src/Ixoil/StockMarketBundle/Resources/orm/ormdesigner.xml"/>
+  <external-module storage-path="../../src/Ixoil/PurchaserBundle/Resources/orm/ormdesigner.xml"/>
+  <visual-data>
+    <association uuid="054ef18a-b8f0-4567-9d78-ea6eb2d43dbd" caption1-position-x="-8" caption1-position-y="-148" center-position-x="0" center-position-y="0"/>
+    <entity uuid="07be3c52-44d8-457c-8212-eb9f784a4f5d" position-x="700" position-y="0" size-x="0" size-x2="140" size-y="0" size-y2="143"/>
+    <entity uuid="14b40942-eed3-4409-9a59-d568a792f73d" position-x="839" position-y="78" size-x="0" size-x2="108" size-y="0" size-y2="73"/>
+    <association uuid="1a68739e-a9f2-48b0-b375-6f8292b8b654" caption1-position-x="9" caption1-position-y="-33" center-position-x="-15" center-position-y="0"/>
+    <association uuid="26d7ab11-bc8b-4d35-9940-609741b71d2b" caption1-position-x="55" caption1-position-y="24" center-position-x="0" center-position-y="0"/>
+    <association uuid="26e1f5a2-21e0-4370-b12a-445fa99053d9" caption1-position-x="36" caption1-position-y="38" center-position-x="0" center-position-y="0"/>
+    <many-to-many-association-entity uuid="27fa767b-e3be-4fc3-afde-66914a2cd282" caption1-position-x="-44" caption1-position-y="29" center-position-x="0" center-position-y="0"/>
+    <entity uuid="3eff1df6-42d9-433a-9818-82f685444287" position-x="389" position-y="28" size-x="0" size-x2="103" size-y="0" size-y2="59"/>
+    <association uuid="48df9e07-ee9d-4a6b-9b26-11a15255260f" caption1-position-x="-33" caption1-position-y="-48" center-position-x="37" center-position-y="0"/>
+    <association uuid="4a2f3dcd-42f3-46a8-8f51-c86b4b095e83" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-40"/>
+    <association uuid="4a441bb9-cfb3-4376-a4c2-0c7d7d23783e" caption1-position-x="-46" caption1-position-y="7" center-position-x="39" center-position-y="0"/>
+    <many-to-many-association-entity uuid="52ba1112-7a94-41cb-a08a-3a48aadede15" caption1-position-x="-63" caption1-position-y="7" center-position-x="0" center-position-y="0"/>
+    <module uuid="6062cbaf-3d3b-4204-ac6a-ef506b79e61b" bk-color="4294702841" position-x="350" position-y="1050" size-x="0" size-x2="1200" size-y="100" size-y2="400"/>
+    <entity uuid="622414f9-8707-47eb-a06a-b5c1a24ae2c5" position-x="571" position-y="278" size-x="0" size-x2="120" size-y="0" size-y2="73"/>
+    <association uuid="66c2ecc5-64da-4782-82c8-9e4eed5929ea" caption1-position-x="-72" caption1-position-y="-4" center-position-x="0" center-position-y="12" splitted="1"/>
+    <association uuid="66f7121e-83cd-4ed3-94ab-7e6b7ca31f2a" caption1-position-x="49" caption1-position-y="-4" center-position-x="0" center-position-y="21" splitted="1"/>
+    <many-to-many-association-entity uuid="6b295323-fb77-49ab-a3c0-c6382b5b69ce" caption1-position-x="-23" caption1-position-y="-2" center-position-x="0" center-position-y="0"/>
+    <entity uuid="6bbc15a1-64ed-471d-85a9-fa13c1c672d2" position-x="300" position-y="0" size-x="0" size-x2="151" size-y="0" size-y2="73"/>
+    <entity uuid="727ebf0a-832e-421c-bebc-e7a1c0868a3d" position-x="500" position-y="-50" size-x="0" size-x2="101" size-y="0" size-y2="60"/>
+    <association uuid="77f8bc74-5266-434b-992d-5f9296386ffb" caption1-position-x="-166" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <module uuid="79079442-f43f-459d-8844-a613abc9cafc" bk-color="4294702841" position-x="-1373" position-y="-550" size-x="-1423" size-x2="1673" size-y="-600" size-y2="900"/>
+    <association uuid="7cd89515-bac4-4897-a5b9-c139813956e4" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <association uuid="7f21f566-344d-42a2-88e5-846078b62626" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <entity uuid="8448fd69-c937-44c6-a33f-111a483b567e" position-x="50" position-y="50" size-x="0" size-x2="110" size-y="0" size-y2="87"/>
+    <module uuid="87e3482e-ff21-48d3-8f69-4e1e7e091d59" bk-color="4294638066" position-x="361" position-y="72" size-x="11" size-x2="1339" size-y="22" size-y2="828"/>
+    <many-to-many-association-entity uuid="8d02da4e-7b0b-4fff-88b4-0d23995ca06b" caption1-position-x="0" caption1-position-y="0" caption2-position-x="37" caption2-position-y="8" center-position-x="0" center-position-y="0" splitted="1"/>
+    <project uuid="94cf8b11-4939-49e6-8e5f-d0ac90e6c099" size-x="0" size-x2="1800" size-y="0" size-y2="1550"/>
+    <entity uuid="9a6bb890-78c3-4730-9c1b-9243e6022437" position-x="1473" position-y="650" size-x="0" size-x2="110" size-y="0" size-y2="157"/>
+    <association uuid="9eef9393-176f-4577-93c1-94e93765f648" caption1-position-x="0" caption1-position-y="0" center-position-x="-105" center-position-y="0"/>
+    <entity uuid="a4e015b8-adb6-44be-b508-2b3ba5231e30" position-x="100" position-y="0" size-x="0" size-x2="148" size-y="0" size-y2="101"/>
+    <association uuid="a805c91a-51b5-43aa-90c9-adbaa5128a45" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <association uuid="aa99253d-9da2-411f-a9f1-1e088c336096" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <module uuid="ac0f1afe-cc69-4892-8b5d-33ce4fe62ca6" bk-color="4294638066" position-x="50" position-y="399" size-x="0" size-x2="250" size-y="-1" size-y2="250"/>
+    <association uuid="af6acfe9-e0a2-45b2-be1c-d99092c8eea1" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <entity uuid="b0b14c98-03f1-4f94-9610-d719c8fbbd9a" position-x="463" position-y="250" size-x="0" size-x2="187" size-y="0" size-y2="115"/>
+    <entity uuid="b4128b94-833b-453f-87e6-67f28f9162ec" position-x="950" position-y="-50" size-x="0" size-x2="177" size-y="0" size-y2="185"/>
+    <entity uuid="bce5ff3b-4e0c-4cb4-bdbc-cf4adb6dbf6f" position-x="89" position-y="178" size-x="0" size-x2="67" size-y="0" size-y2="31"/>
+    <entity uuid="bd2dec2c-e913-4963-aa73-e069dcff2ba8" position-x="89" position-y="28" size-x="0" size-x2="117" size-y="0" size-y2="115"/>
+    <association uuid="c4437c68-cdfa-4e7d-80f0-ddedfc7396b2" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="-31"/>
+    <entity uuid="c7ef4958-1826-4429-a2fc-cf34129ce146" position-x="55" position-y="578" size-x="0" size-x2="104" size-y="0" size-y2="59"/>
+    <entity uuid="c9eef0e8-56d2-482c-b6d5-780b53f51310" position-x="606" position-y="428" size-x="0" size-x2="149" size-y="0" size-y2="73"/>
+    <association uuid="cd229465-b22b-4e30-a112-fcfd4cea5b7b" caption1-position-x="0" caption1-position-y="0" center-position-x="0" center-position-y="0"/>
+    <association uuid="d50873a7-3bfd-4488-a2c7-92e042752562" caption1-position-x="7" caption1-position-y="4" center-position-x="-10" center-position-y="2" splitted="1"/>
+    <entity uuid="d5590e77-57fb-4fef-a654-2b7fed69dec2" position-x="921" position-y="428" size-x="0" size-x2="92" size-y="0" size-y2="59"/>
+    <entity uuid="dbba7bfd-87d6-41cd-87ad-87852fa9051b" position-x="304" position-y="478" size-x="0" size-x2="187" size-y="0" size-y2="157"/>
+    <entity uuid="e637b15e-2c25-4629-8ba8-68fc7bf8545f" position-x="39" position-y="378" size-x="0" size-x2="111" size-y="0" size-y2="45"/>
+    <entity uuid="ea154a13-cc24-4e18-8ba5-fbec9efdfec1" position-x="789" position-y="278" size-x="0" size-x2="172" size-y="0" size-y2="60"/>
+    <association uuid="eccf4bd5-3646-45d0-a58b-26d09cf673b9" caption1-position-x="-5" caption1-position-y="-5" center-position-x="0" center-position-y="0"/>
+    <entity uuid="f204cb8e-21c1-4168-8846-fd75455fc30e" position-x="750" position-y="250" size-x="0" size-x2="101" size-y="0" size-y2="45"/>
+    <entity uuid="f220c095-fa91-4028-bfe6-a4602ad1b1a7" position-x="460" position-y="728" size-x="0" size-x2="129" size-y="0" size-y2="59"/>
+    <association uuid="f85ae622-cfac-49a4-a716-ec2103c48f9d" caption1-position-x="10" caption1-position-y="31" center-position-x="0" center-position-y="-5"/>
+    <entity uuid="f8e049b0-ae75-4ec5-b803-d0be4a3a403e" position-x="1161" position-y="328" size-x="0" size-x2="149" size-y="0" size-y2="101"/>
+    <association uuid="fa43386f-08a0-4c83-b30e-b7e95e193e31" caption1-position-x="36" caption1-position-y="47" center-position-x="0" center-position-y="0"/>
+    <association uuid="fb41ce3c-8ad8-46db-a7bf-801bfcc57356" caption1-position-x="3" caption1-position-y="0" center-position-x="0" center-position-y="22"/>
+    <association uuid="fb8a11af-ccea-4ff3-9bff-875905a7d624" caption1-position-x="-25" caption1-position-y="-4" center-position-x="0" center-position-y="12" splitted="1"/>
+  </visual-data>
+</orm-designer>

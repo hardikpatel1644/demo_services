@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <!-- Helper -->
+        <parameter key="ixoil_user.helper.account.admin.class">Ixoil\UserBundle\Helper\AccountAdminHelper</parameter>
+        
+        <!-- Entity -->
+        <parameter key="ixoil_user.entity.account.class">Ixoil\UserBundle\Entity\Account</parameter>
+        <parameter key="ixoil_user.entity.subscription.option.class">Ixoil\UserBundle\Entity\SubscriptionOption</parameter>
+        <parameter key="ixoil_user.entity.subscription.class">Ixoil\UserBundle\Entity\Subscription</parameter>
+        <parameter key="ixoil_user.entity.subscription.price.class">Ixoil\UserBundle\Entity\SubscriptionPrice</parameter>
+        
+        <!-- Controller -->
+        <parameter key="ixoil_user.controller.account">IxoilUserBundle:AccountAdmin</parameter>
+        
+        <!-- Admin -->
+        <parameter key="ixoil_user.admin.account.class">Ixoil\UserBundle\Admin\AccountAdmin</parameter>
+        <parameter key="ixoil_user.admin.subscription.option.class">Ixoil\UserBundle\Admin\SubscriptionOptionAdmin</parameter>
+        <parameter key="ixoil_user.admin.subscription.class">Ixoil\UserBundle\Admin\SubscriptionAdmin</parameter>
+        <parameter key="ixoil_user.admin.subscription.price.option.class">Ixoil\UserBundle\Admin\SubscriptionPriceAdmin</parameter>
+        
+        <!-- Misc -->
+        <parameter key="ixoil_user.admin.subscription.groupname">Subscriptions</parameter>
+    </parameters>
+
+    <services>
+        <!-- Helper -->
+        <service id="ixoil_user.helper.account.admin" class="%ixoil_user.helper.account.admin.class%" scope="request">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="ixoil_file.manager"/>
+            <argument type="service" id="ixoil_email.mailer.twig"/>
+            <argument type="service" id="translator"/>
+        </service>
+    
+        <!-- Admin -->
+        <service id="ixoil_user.admin.account" class="%ixoil_user.admin.account.class%">
+            <tag name="sonata.admin"
+                 manager_type="orm" 
+                 group="%sonata.user.admin.groupname%" 
+                 label="Companies" 
+                 label_catalogue="SonataUserBundle" 
+                 label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument />
+            <argument>%ixoil_user.entity.account.class%</argument>
+            <argument>%ixoil_user.controller.account%</argument>
+            <argument type="service" id="ixoil_file.manager"/>
+        </service>
+        <service id="ixoil_user.admin.subscription.class" class="%ixoil_user.admin.subscription.class%">
+            <tag name="sonata.admin" 
+                 manager_type="orm" 
+                 group="%ixoil_user.admin.subscription.groupname%" 
+                 label="Subscriptions" 
+                 label_catalogue="SonataUserBundle" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument />
+            <argument>%ixoil_user.entity.subscription.class%</argument>
+            <argument />
+        </service>
+        <service id="ixoil_user.admin.subscription.option" class="%ixoil_user.admin.subscription.option.class%">
+            <tag name="sonata.admin" 
+                 manager_type="orm" 
+                 group="%ixoil_user.admin.subscription.groupname%" 
+                 label="Options" 
+                 label_catalogue="SonataUserBundle" 
+                 label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument />
+            <argument>%ixoil_user.entity.subscription.option.class%</argument>
+            <argument />
+        </service>
+        <service id="ixoil_user.admin.subscription.price.option.class" class="%ixoil_user.admin.subscription.price.option.class%">
+            <tag name="sonata.admin" 
+                 manager_type="orm" 
+                 group="%ixoil_user.admin.subscription.groupname%" 
+                 label="Price" 
+                 label_catalogue="SonataUserBundle" 
+                 label_translator_strategy="sonata.admin.label.strategy.underscore" />
+            <argument />
+            <argument>%ixoil_user.entity.subscription.price.class%</argument>
+            <argument />
+        </service>
+    </services>
+</container>
